@@ -30,7 +30,7 @@
     @include('partials.header')
     @endif
 
-    @include('partials.sidebar')
+  
 		@yield('content')
     </section>
 	</div>
