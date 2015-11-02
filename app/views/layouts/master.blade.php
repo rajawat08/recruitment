@@ -19,21 +19,24 @@
 	@yield('style')
 
 </head>
-<body>
-	@include('partials.flashes')
+<body class="boxed-page">
+  
 	
-	@if(Auth::check() && Auth::user()->isAdmin())
-		@include('partials.header')
-	@endif
+	
+	
+	<div class="container">
+    <section id="container" class="">
+    @if(Auth::check() && Auth::user()->isAdmin())
+    @include('partials.header')
+    @endif
 
-	<div class="container main-content">
+    @include('partials.sidebar')
 		@yield('content')
+    </section>
 	</div>
 
-	<footer class="container">
-		Copyright &COPY; {{ date('Y') }}
-	</footer>
-
+	
+  
     {{ script('js/jquery.js') }}
     {{ script('js/jquery-1.8.3.min.js') }}
     {{ script('js/bootstrap.min.js') }}

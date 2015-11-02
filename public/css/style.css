@@ -214,7 +214,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 }
 
 ul.sidebar-menu {
-    margin-top: 75px;
+   // margin-top: 75px;
 }
 
 #sidebar > ul > li > ul.sub {
@@ -4026,7 +4026,7 @@ span.customSelect.changed {
 }
 
 .boxed-page .container {
-    background: #2A3542;
+   // background: #2A3542;
     padding-left: 0;
     padding-right: 0;
 }
@@ -5496,4 +5496,9 @@ a.guest-on i {
 
 .lobby {
     padding: 0 !important;
+}
+
+
+.wrapper_start{
+    margin-top:80px;
 }
