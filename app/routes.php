@@ -17,3 +17,4 @@
 // });
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::resource('login', 'LoginController', ['only' => ['index', 'store']]);
+Route::resource('users', 'UsersController');

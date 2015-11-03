@@ -17,18 +17,18 @@
                       <li ><a href="#">Accounts</a></li>
                       <li ><a href="#">Openings</a></li>
                       <li ><a href="#">Candidates</a></li>
-                      <li ><a href="#">Settings</a></li>
-                      <!-- <li class="dropdown">
-                          <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">UI Element <b class=" fa fa-angle-down"></b></a>
+                      
+                      <li class="dropdown">
+                          <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">Users<b class=" fa fa-angle-down"></b></a>
                           <ul class="dropdown-menu">
-                              <li><a href="general.html">General</a></li>
-                              <li><a href="buttons.html">Buttons</a></li>
-                              <li><a href="widget.html">Widget</a></li>
-                              <li><a href="slider.html">Slider</a></li>
-                              <li><a href="nestable.html">Nestable</a></li>
-                              <li><a href="font_awesome.html">Font Awesome</a></li>
+                            <li>{{HTML::link("/users", 'All users');}}</li>
+                              <li><a href="users">All users</a></li>
+                              <li><a href="#">Add New</a></li>
+                              <li><a href="#">Roles</a></li>
+                              <li><a href="#">Permissions</a></li>
+                              
                           </ul>
-                      </li> -->
+                      </li>
                       
                   </ul>
 

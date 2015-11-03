@@ -13,8 +13,10 @@
     {{style('assets/font-awesome/css/font-awesome.css')}}
     {{style('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}
     {{ style('css/owl.carousel.css') }}
+    {{ style('css/table-responsive.css') }}
     {{ style('css/style.css') }}
     {{ style('css/style-responsive.css') }}
+
 	
 	@yield('style')
 
