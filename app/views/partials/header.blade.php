@@ -22,7 +22,7 @@
                           <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">Users<b class=" fa fa-angle-down"></b></a>
                           <ul class="dropdown-menu">
                             <li>{{HTML::link("/users", 'All users');}}</li>
-                              <li><a href="users">All users</a></li>
+                             
                               <li><a href="#">Add New</a></li>
                               <li><a href="#">Roles</a></li>
                               <li><a href="#">Permissions</a></li>

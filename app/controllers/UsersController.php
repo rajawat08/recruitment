@@ -59,13 +59,26 @@ class UsersController extends \BaseController {
      */
     public function store()
     {
-        app('Pingpong\Admin\Validation\User\Create')->validate($data = $this->inputAll());
+        //app('Pingpong\Admin\Validation\User\Create')->validate($data = $this->inputAll());
+        $validation = Validator::make(Input::all(), User::$rules);
+        if (!$validation->passes()) {
+            return Redirect::route('users.create')
+                ->withInput()
+                ->withErrors($validation)
+                ->with('flash_error', 'There were validation errors.');
+        }
 
-        $user = $this->users->create($data);
+        $input = array_filter(
+            Input::except('_token'),
+            function ($val) {
+                return !empty($val);
+            }
+        );
+        $user = $this->users->create($input);
 
         $user->addRole(\Input::get('role'));
 
-        return $this->redirect('users.index');
+        return Redirect::route('users.index');
     }
 
     /**
@@ -101,11 +114,11 @@ class UsersController extends \BaseController {
 
             $role = $user->getRole() ? $user->getRole()->id : null;
 
-            return $this->view('users.edit', compact('user', 'role'));
+            return View::make('users.edit', compact('user', 'role'));
         }
         catch (ModelNotFoundException $e)
         {
-            return $this->redirectNotFound();
+            //return $this->redirectNotFound();
         }
     }
 
@@ -121,10 +134,24 @@ class UsersController extends \BaseController {
         {   
             $data = ! \Input::has('password') ? \Input::except('password') : $this->inputAll();
             
-            $user = $this->users->findOrFail($id);
-                
-            app('Pingpong\Admin\Validation\User\Update')->validate($data);
             
+                
+            
+            $validation = Validator::make(Input::all(), User::$rules);
+            if (!$validation->passes()) {
+                 return Redirect::route('users.edit', $id)
+                ->withInput()
+                ->withErrors($validation)
+                ->with('flash_error', 'There were validation errors.');
+            }
+            $user = $this->users->findOrFail($id);
+
+             $input = array_filter(
+                Input::except('_token'),
+                function ($val) {
+                    return !empty($val);
+                }
+            );
             $user->update($data);
 
             $user->updateRole(\Input::get('role'));
@@ -133,7 +160,7 @@ class UsersController extends \BaseController {
         }
         catch (ModelNotFoundException $e)
         {
-            return $this->redirectNotFound();
+           // return $this->redirectNotFound();
         }
     }
 
@@ -149,11 +176,11 @@ class UsersController extends \BaseController {
         {
             $this->users->destroy($id);
 
-            return $this->redirect('users.index');
+            return Redirect::route('users.index');
         }
         catch (ModelNotFoundException $e)
         {
-            return $this->redirectNotFound();
+            //return $this->redirectNotFound();
         }
     }
 

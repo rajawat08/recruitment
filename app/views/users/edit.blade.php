@@ -1,15 +1,34 @@
-@extends('admin::layouts.master')
+@extends('layouts.master')
 
 @section('content')
-	
-	<h4 class="page-header">
-		Edit
-		&middot;
-		<small>{{ link_to_route('admin.users.index', 'Back') }}</small>
-	</h4>
-	
-	<div>
-		@include('admin::users.form', array('model' => $user) + compact('role'))
-	</div>
+<section id="main-content">
+    <section class=" wrapper wrapper_start">
+	@include('partials.flashes')
+    <div class="row">
+		<div class="col-lg-2">
+			<section class="panel">
+				<header class="panel-heading">
+				
+				<small>{{ link_to_route('users.index', 'Back') }}</small>
 
+				</header>
+			</section> 
+		</div>
+
+		<div class="col-lg-6">
+			<section class="panel">
+				<header class="panel-heading">
+				Edit
+				&middot;
+				</header>
+				<div class="panel-body">
+					@include('users.form', array('model' => $user) + compact('role'))
+
+				</div>
+			</section> 
+		</div>
+	</div>
+	
+	</section>
+	</section>
 @stop
