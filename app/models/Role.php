@@ -1,11 +1,20 @@
 <?php
-
+use Illuminate\Support\Facades\Config;
+use Illuminate\Database\Eloquent\Model;
 class Role extends \Eloquent {
 	protected $table = 'roles';
 
-	protected $guarded = []; 
+	/**
+	 * Fillable property.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['name', 'slug', 'description'];
 
-
+	public static $rules = [
+	 	 'name' => 'required',
+	     'slug' => 'required|unique:roles,slug'
+    ];
 	/**
 	 * Relation to "Permission".
 	 *

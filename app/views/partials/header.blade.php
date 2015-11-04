@@ -23,9 +23,9 @@
                           <ul class="dropdown-menu">
                             <li>{{HTML::link("/users", 'All users');}}</li>
                              
-                              <li>{{HTML::link("/users/create", 'Add New');}}</li>
-                              <li><a href="#">Roles</a></li>
-                              <li><a href="#">Permissions</a></li>
+                              <li>{{HTML::link("/users/create", 'Add New')}}</li>
+                              <li><a href="#">{{HTML::link("/roles", 'Roles')}}</a></li>
+                              <li><a href="#">{{HTML::link("/permissions", 'Permissions')}}</a></li>
                               
                           </ul>
                       </li>

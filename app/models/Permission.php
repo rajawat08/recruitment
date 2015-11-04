@@ -3,8 +3,17 @@
 class Permission extends \Eloquent {
 	protected $table = 'permissions';
 
-	protected $guarded = []; 
-
+	/**
+	 * Fillable property.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['name', 'slug', 'description'];
+	
+	public static $rules =  [
+	        'name' => 'required',
+	        'slug' => 'required|unique:permissions,slug'
+	    ];
 	/**
 	 * Relation to "Role".
 	 *

@@ -17,4 +17,7 @@
 // });
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::resource('login', 'LoginController', ['only' => ['index', 'store']]);
-Route::resource('users', 'UsersController');
+$options = ['except' => ['show']];
+Route::resource('users', 'UsersController',$options);
+Route::resource('roles', 'RolesController', $options);
+Route::resource('permissions', 'PermissionsController', $options);

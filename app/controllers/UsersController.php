@@ -26,7 +26,7 @@ class UsersController extends \BaseController {
      */
     protected function redirectNotFound()
     {
-        return $this->redirect('users.index');
+        return Redirect::route('users.index');
     }
 
     /**
@@ -65,7 +65,9 @@ class UsersController extends \BaseController {
             return Redirect::route('users.create')
                 ->withInput()
                 ->withErrors($validation)
-                ->with('flash_error', 'There were validation errors.');
+                ->withFlashMessage("There were validation errors.")
+                ->withFlashType('danger');
+                
         }
 
         $input = array_filter(
