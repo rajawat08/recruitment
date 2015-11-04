@@ -132,12 +132,19 @@ class UsersController extends \BaseController {
     {
         try
         {   
-            $data = ! \Input::has('password') ? \Input::except('password') : $this->inputAll();
+            $data = ! Input::has('password') ? Input::except('password') : Input::all();
+            User::$rules =  [
+                    'name' => 'required',
+                    'username' => 'required|unique:users,username,' . $id,
+                    'email' => 'required|email|unique:users,email,' . $id
+                    
+                ];
+            if(Input::has('password')){
+               User::$rules['password'] ='required|min:6|max:20'; 
+            }
             
             
-                
-            
-            $validation = Validator::make(Input::all(), User::$rules);
+            $validation = Validator::make($data, User::$rules);
             if (!$validation->passes()) {
                  return Redirect::route('users.edit', $id)
                 ->withInput()
@@ -146,7 +153,7 @@ class UsersController extends \BaseController {
             }
             $user = $this->users->findOrFail($id);
 
-             $input = array_filter(
+            $input = array_filter(
                 Input::except('_token'),
                 function ($val) {
                     return !empty($val);
@@ -154,9 +161,9 @@ class UsersController extends \BaseController {
             );
             $user->update($data);
 
-            $user->updateRole(\Input::get('role'));
+            $user->updateRole(Input::get('role'));
 
-            return $this->redirect('users.index');
+            return Redirect::route('users.index');
         }
         catch (ModelNotFoundException $e)
         {

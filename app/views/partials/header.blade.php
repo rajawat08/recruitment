@@ -23,7 +23,7 @@
                           <ul class="dropdown-menu">
                             <li>{{HTML::link("/users", 'All users');}}</li>
                              
-                              <li><a href="#">Add New</a></li>
+                              <li>{{HTML::link("/users/create", 'Add New');}}</li>
                               <li><a href="#">Roles</a></li>
                               <li><a href="#">Permissions</a></li>
                               
@@ -43,7 +43,7 @@
                               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                   
                                   {{HTML::image("img/avatar1_small.jpg")}}
-                                  <span class="username">Jhon Doue</span>
+                                  <span class="username">{{Auth::user()->name}}</span>
                                   <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu extended logout">
