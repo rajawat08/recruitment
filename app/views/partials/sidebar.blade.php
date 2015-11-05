@@ -22,6 +22,40 @@
                           <li>{{HTML::link("/permissions", 'Permissions')}}</li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-users"></i>
+                          <span>Accounts</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-phone"></i>
+                          <span>Contacts</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-user"></i>
+                          <span>Leads</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-user"></i>
+                          <span>Candidates</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-at"></i>
+                          <span>Openings</span>
+                      </a>
+                  </li>
+
+
               </ul>
              
           </div>
