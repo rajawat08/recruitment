@@ -38,7 +38,8 @@
 						</td>
 						<td>{{ $role->created_at }}</td>
 						<td class="text-center">
-							<a href="{{ route('roles.edit', $role->id) }}">Edit</a>
+							
+							@include('roles.modal', ['data' => $role, 'name' => 'roles'])
 							&middot;
 							@include('partials.modal', ['data' => $role, 'name' => 'roles'])
 						</td>

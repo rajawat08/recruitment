@@ -12,7 +12,7 @@ View::composer('users.form', function($view)
    
 });
 
-View::composer('roles.form', function($view)
+View::composer(['roles.form','roles.modal'], function($view)
 {
 	 $permissions = Permission::lists('name', 'id');
 

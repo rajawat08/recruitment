@@ -76,6 +76,8 @@ class RolesController extends \BaseController {
             }
         );
         $this->roles->create($input);
+
+        
         return $this->redirect('roles.index');
     }
 
@@ -156,13 +158,14 @@ class RolesController extends \BaseController {
 
             $role->update($input);
             
-            if($role->permissions->count())
+            if($role->permissions->count() || count(Input::get('permissions')))
             {
                 $role->permissions()->detach($role->permissions->lists('id'));
-
+                if(count(Input::get('permissions')))
+                $role->permissions()->attach(Input::get('permissions'));
                 
             }
-            $role->permissions()->attach(Input::get('permissions'));
+            
             return $this->redirect('roles.index');
         }
         catch (ModelNotFoundException $e)
