@@ -21,24 +21,23 @@
 	@yield('style')
 
 </head>
-<body class="boxed-page">
-  
+<body>
 	
-	
-	
-	<div class="container">
-    <section id="container" class="">
+    <section id="container" >
     @if(Auth::check() && Auth::user()->isAdmin())
     @include('partials.header')
+    @include('partials.sidebar')
     @endif
-
-  
-		@yield('content')
+    <section id="main-content">
+          <section class="wrapper">
+            @include('partials.flashes')
+            @yield('content')
+          </section>          
+    </section>    
+     
+      
+     
     </section>
-	</div>
-
-	
-  
     {{ script('js/jquery.js') }}
     {{ script('js/jquery-1.8.3.min.js') }}
     {{ script('js/bootstrap.min.js') }}
@@ -57,28 +56,7 @@
     {{ script('js/count.js') }}
     {{ script('js/jquery.dcjqaccordion.2.7.js')}}
     {{ script('js/jquery.scrollTo.min.js')}}
-    <script>
-
-      //owl carousel
-
-      $(document).ready(function() {
-          $("#owl-demo").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true,
-			  autoPlay:true
-
-          });
-      });
-
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
+   
 	@yield('script')
 </body>
 </html>

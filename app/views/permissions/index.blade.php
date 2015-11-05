@@ -1,23 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-<section id="main-content">
-	<section class=" wrapper wrapper_start">
-		 @include('partials.flashes')
-		 <div class="row">
-	<div class="col-lg-2">
-	<section class="panel">
-		<header class="panel-heading">
-			<small>{{ link_to_route('permissions.create', 'Add New') }}</small>
-		</header>
-	</section>
-	</div>
 
-	<div class="col-lg-10">
+		 <div class="row">
+	
+	<div class="col-lg-12">
 	<section class="panel">
 		<header class="panel-heading">
 			All Roles ({{ $permissions->getTotal() }})
 		&middot;
+		<small>{{ link_to_route('permissions.create', 'Add New') }}</small>
 		</header>
 		<div class="panel-body">
         <section id="unseen">
@@ -60,9 +52,6 @@
 	</div>
 
 </div>
-
-	</section>
-</section>
 
 
 @stop
