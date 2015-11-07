@@ -20,3 +20,32 @@ View::composer(['roles.form','roles.modal'], function($view)
    
 });
 
+View::composer('clients.form', function($view)
+{
+	 $users = User::lists('name', 'id');
+
+	 $countries = Country::lists('name', 'code');
+
+	 $account_type = array(
+	 					"lead" => "Lead"
+	 				);
+	 $status = array(
+	 					"active" => "Active",
+	 					"in-active" => "In Active"
+	 				);
+	 
+	 $revenue = array(
+	 					"low" => "Low",
+	 					"medium" => "Medium",
+	 					"high" => "High"
+	 				);
+	 $industry = array(
+	 					"banking" => "Banking",
+	 					"insurance" => "Insurance",
+	 					"it-industry" => "IT Industry"
+	 				);
+        $view->with(compact('users','account_type','status','revenue','countries','industry'));
+   
+});
+
+

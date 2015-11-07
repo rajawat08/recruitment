@@ -57,7 +57,7 @@
     {{ script('js/count.js') }}
     {{ script('js/jquery.dcjqaccordion.2.7.js')}}
     {{ script('js/jquery.scrollTo.min.js')}}
-   
+   {{ script('assets/ckeditor/ckeditor.js') }}
 	@yield('script')
 </body>
 </html>

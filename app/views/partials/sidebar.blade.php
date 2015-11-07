@@ -25,8 +25,12 @@
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-users"></i>
-                          <span>Accounts</span>
+                          <span>Accounts</span>                         
                       </a>
+                      <ul class="sub">
+                           <li>{{HTML::link("/clients", 'All Clients');}}</li>
+                          <li>{{HTML::link("/clients/create", 'Add New')}}</li>
+                      </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
