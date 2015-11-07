@@ -23,4 +23,13 @@ class Permission extends \Eloquent {
 	{
 		return $this->belongsToMany('Role')->withTimestamps();
 	}
+
+	/**
+	 * format created_at date
+	 *
+	 * @return formated date
+	 */
+	public function getCreatedAtAttribute(){       
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j,Y');
+    }
 }

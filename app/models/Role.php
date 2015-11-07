@@ -66,4 +66,12 @@ class Role extends \Eloquent {
 			return call_user_func_array(array($query, $method), $parameters);
 		}
 	}
+	/**
+	 * format created_at date
+	 *
+	 * @return formated date
+	 */
+	public function getCreatedAtAttribute(){       
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j,Y');
+    }
 }

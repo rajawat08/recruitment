@@ -47,4 +47,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $this->attributes['password'] = \Hash::make($value);
     }
 
+    /**
+    * @param $date
+    */
+    public function getCreatedAtAttribute(){
+        //return date("F j, Y",strtotime($this->attributes['created_at'])); working fine
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j,Y');
+    }
+
 }
