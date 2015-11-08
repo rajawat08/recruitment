@@ -55,4 +55,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j,Y');
     }
 
+    /**
+     * hasMany clients
+     */
+    public function clients()
+    {
+        return $this->hasMany('Client');
+    }
+
 }

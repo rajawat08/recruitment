@@ -7,42 +7,51 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              All Users ({{ $users->getTotal() }})
+                              All Accounts ({{ $clients->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('users.create', 'Add New') }}</small>
+		<small>{{ link_to_route('clients.create', 'Add New') }}</small>
                           </header>
                           <div class="panel-body">
                               <section id="unseen">
                                 <table class="table table-bordered table-striped table-condensed">
                                   <thead>
-                                  <tr>
-                                      <th>No</th>
-                                      <th>Name</th>
-                                      <th >Username</th>
-                                      <th >Role</th>
+                                  <tr>                                     
+                                      <th>Account Name</th>
+                                      <th >Website</th>
                                       <th >Email</th>
-                                      <th >Created At</th>
+                                      <th >Phone</th>
+                                      <th >Type</th>
+                                      <th >Revenue Type</th>
+                                      <th >Status</th>
+                                      <th >Industry</th>
+                                      <th >Added By</th>
+                                      <th >Added At</th>
                                       <th class="text-center">Action</th>
                                   </tr>
                                   </thead>
                                   <tbody>
-                                 @foreach ($users as $user)
+                                 @foreach ($clients as $client)
 								<tr>
-									<td>{{ $no }}</td>
-									<td>{{ $user->name }}</td>
-									<td>{{ $user->username }}</td>
-									<td>{{ $user->getRole() ? $user->getRole()->name : 'Unknow' }}</td>
-									<td>{{ $user->email }}</td>
-									<td>{{ $user->created_at }}</td>
+									
+									<td>{{ $client->account_name }}</td>
+									<td>{{ $client->website }}</td>
+									<td>{{ $client->email }}</td>
+									<td>{{ $client->phone }}</td>
+                  <td>{{ $client->account_type }}</td>
+                  <td>{{ $client->revenue_type }}</td>
+                  <td>{{ ucfirst($client->status) }}</td>
+                  <td>{{ ucfirst($client->industry) }}</td>
+                  <td>{{ $client->user->name }}</td>
+									<td>{{ $client->created_at }}</td>
 									<td class="text-center">
-										<a href="{{ route('users.edit', $user->id) }}">Edit</a>
+										<a href="{{ route('clients.edit', $client->id) }}">Edit</a>
 										&middot;
-										@if($user->getRole()->name != 'Administrator')
-										@include('partials.modal', ['data' => $user, 'name' => 'users'])
+										@if(Auth::user()->getRole()->name == 'Administrator')
+										@include('partials.modal', ['data' => $client, 'name' => 'clients'])
 										@endif
 									</td>
 								</tr>
-			<?php $no++ ;?>
+		
 			@endforeach
                                   
                                  
@@ -54,6 +63,6 @@
                   </div>
               </div>
 	<div class="text-center">
-		{{ pagination_links($users) }}
+		{{ pagination_links($clients) }}
 	</div>   
 @endsection

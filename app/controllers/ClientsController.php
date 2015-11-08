@@ -20,7 +20,10 @@ class ClientsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$clients = $this->clients->paginate(10);
+        
+
+        return View::make('clients.index', compact('clients'));
 	}
 
 	/**
@@ -42,7 +45,29 @@ class ClientsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		
+		 $validation = Validator::make(Input::all(), Client::$rules);
+        if (!$validation->passes()) {
+            return Redirect::route('clients.create')
+                ->withInput()
+                ->withErrors($validation)
+                ->withFlashMessage("There were validation errors.")
+                ->withFlashType('danger');
+                
+        }
+
+        $input = array_filter(
+            Input::except('_token'),
+            function ($val) {
+                return !empty($val);
+            }
+        );
+        $client = $this->clients->create($input);
+
+        return Redirect::route('clients.index');
+
+
+
 	}
 
 	/**
@@ -66,7 +91,7 @@ class ClientsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		echo "In progress";
 	}
 
 	/**
@@ -90,7 +115,7 @@ class ClientsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		echo "In progress";
 	}
 
 }
