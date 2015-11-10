@@ -28,6 +28,10 @@ class Client extends \Eloquent {
     	return ucfirst($this->attributes['revenue_type'])." Type";
     }
 
+     public function getContractPathAttribute(){
+    	return $this->attributes['contract_path'] != "" ? "http://manageamazon.com/CRM/uploads/".$this->attributes['contract_path'] : "";
+    }
+
      /**
      * user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

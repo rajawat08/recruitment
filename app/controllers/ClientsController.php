@@ -6,6 +6,8 @@ class ClientsController extends \BaseController {
 
 	public static $filePath = "./uploads";
 
+	public static $fullPath = "http://manageamazon.com/CRM/uploads";
+
 
 	public function __construct(Client $clients){
 
@@ -92,7 +94,7 @@ class ClientsController extends \BaseController {
         	$ext = $file->getClientOriginalExtension();        	
         	$fileName = $this->gen_uuid().".".$ext;        	
         	if($file->move(self::$filePath, $fileName)){
-        		$input['contract_path'] = self::$filePath."/".$fileName;
+        		$input['contract_path'] = $fileName;
         	}
         	
         }
@@ -166,7 +168,7 @@ class ClientsController extends \BaseController {
         		if($client->contract_path != "")
         		unlink($client->contract_path);
 
-        		$input['contract_path'] = self::$filePath."/".$fileName;
+        		$input['contract_path'] = $fileName;
         	}
         	
         }
