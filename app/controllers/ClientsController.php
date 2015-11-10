@@ -48,8 +48,8 @@ class ClientsController extends \BaseController {
 	{
 		$clients = $this->clients->paginate(10);
         
-
-        return View::make('clients.index', compact('clients'));
+		$fullPath = self::$fullPath;
+        return View::make('clients.index', compact('clients','fullPath'));
 	}
 
 	/**
@@ -165,6 +165,7 @@ class ClientsController extends \BaseController {
         	$ext = $file->getClientOriginalExtension();        	
         	$fileName = $this->gen_uuid().".".$ext;        	
         	if($file->move(self::$filePath, $fileName)){
+        		
         		if($client->contract_path != "")
         		unlink($client->contract_path);
 

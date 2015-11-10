@@ -36,7 +36,7 @@
 									<td>{{ $client->account_name }}</td>
 									<td>{{ $client->website }}</td>
 									<td>{{ $client->email }}</td>
-									<td>{{ $client->contract_path != "" ? HTML::link($client->contract_path,'contract',['target' => '_blank']) :'N/A' }}</td>
+									<td>{{ $client->contract_path != "" ? HTML::link($fullPath."/".$client->contract_path,'contract',['target' => '_blank']) :'N/A' }}</td>
                   <td>{{ $client->account_type }}</td>
                   <td>{{ $client->revenue_type }}</td>
                   <td>{{ ucfirst($client->status) }}</td>
