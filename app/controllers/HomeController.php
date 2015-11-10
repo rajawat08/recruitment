@@ -33,4 +33,18 @@ class HomeController extends BaseController {
 		return View::make('index');
 	}
 
+	 /**
+     * Logout.
+     *
+     * @return \Response
+     */
+    public function logout()
+    {
+        Auth::logout();
+
+       
+
+        return $this->redirect('login.index');
+    }
+
 }
