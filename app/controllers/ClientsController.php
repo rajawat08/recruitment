@@ -79,7 +79,7 @@ class ClientsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		 
 	}
 
 	/**
@@ -91,7 +91,9 @@ class ClientsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		echo "In progress";
+		$client = $this->clients->findOrFail($id);
+
+         return $this->view('clients.edit', compact('client'));
 	}
 
 	/**
@@ -103,7 +105,28 @@ class ClientsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validation = Validator::make(Input::all(), Client::$rules);
+        if (!$validation->passes()) {
+            return Redirect::route('clients.edit',$id)
+                ->withInput()
+                ->withErrors($validation)
+                ->withFlashMessage("There were validation errors.")
+                ->withFlashType('danger');
+                
+        }
+
+        $input = array_filter(
+            Input::except('_token'),
+            function ($val) {
+                return !empty($val);
+            }
+        );
+
+        $client = $this->clients->findOrFail($id);
+
+        $client->update($input);
+
+        return $this->redirect('clients.index');
 	}
 
 	/**
@@ -115,7 +138,9 @@ class ClientsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		echo "In progress";
+		$this->clients->destroy($id);
+
+        return $this->redirect('clients.index');
 	}
 
 }
