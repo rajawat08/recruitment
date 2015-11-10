@@ -88,11 +88,11 @@
 		{{ Form::text('contract_end', null, ['class' => 'form-control']) }}
 		{{ $errors->first('contract_end', '<div class="text-danger">:message</div>') }}
 	</div>
-	<!-- <div class="form-group col-lg-6">
+	<div class="form-group col-lg-6">
 		{{ Form::label('contract_path', 'Contract:') }}
 		{{ Form::file('contract_path', ['class' => 'form-control']) }}
 		{{ $errors->first('contract_path', '<div class="text-danger">:message</div>') }}
-	</div> -->
+	</div>
 	<div class="form-group col-lg-6">
 		{{ Form::label('added_by', 'Added By:') }}
 		{{ Form::select('added_by', $users, null, ['class' => 'form-control']) }}
