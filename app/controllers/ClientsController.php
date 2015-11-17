@@ -167,7 +167,7 @@ class ClientsController extends \BaseController {
         	if($file->move(self::$filePath, $fileName)){
         		
         		if($client->contract_path != "")
-        		unlink($client->contract_path);
+        		unlink(self::$filePath."/".$client->contract_path);
 
         		$input['contract_path'] = $fileName;
         	}
