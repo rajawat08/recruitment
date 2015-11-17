@@ -37,6 +37,10 @@
                           <i class="fa fa-phone"></i>
                           <span>Contacts</span>
                       </a>
+                      <ul class="sub">
+                           <li>{{HTML::link("/contacts", 'All Contacts');}}</li>
+                          <li>{{HTML::link("/contacts/create", 'Add New')}}</li>
+                      </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >

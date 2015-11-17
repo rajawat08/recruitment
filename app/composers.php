@@ -48,4 +48,32 @@ View::composer('clients.form', function($view)
    
 });
 
+View::composer('contacts.form', function($view)
+{
+	 $departments = array(
+	 					"sales" => "Sales"
+	 				);
+	 $users = User::lists('name', 'id');
+
+	 $countries = Country::lists('name', 'code');
+
+	 $clients = Client::lists('account_name', 'id');
+	 $gender = array(
+	 					"M" => "Male",
+	 					"F" => "FeMale"
+	 				);
+	 
+	 $status = array(
+	 					"active" => "Active",
+	 					"in-active" => "In Active"
+	 				);
+	 $lead_sources = array(
+	 					"source 1" => "Source 1"
+	 					
+	 				);
+	 
+        $view->with(compact('users','departments','status','clients','gender','lead_sources','countries'));
+   
+});
+
 

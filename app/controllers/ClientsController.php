@@ -72,7 +72,7 @@ class ClientsController extends \BaseController {
 	public function store()
 	{
 		
-		 $validation = Validator::make(Input::all(), Client::$rules);
+		$validation = Validator::make(Input::all(), Client::$rules);
         if (!$validation->passes()) {
             return Redirect::route('clients.create')
                 ->withInput()
