@@ -45,9 +45,7 @@ View::composer('clients.form', function($view)
 
 View::composer('contacts.form', function($view)
 {
-	 $departments = array(
-	 					"sales" => "Sales"
-	 				);
+	 $departments = DB::table('client_company_departments')->lists('dpt_name','dpt_code');
 	 $users = User::lists('name', 'id');
 
 	 $countries = Country::lists('name', 'code');

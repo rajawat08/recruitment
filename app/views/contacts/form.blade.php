@@ -43,10 +43,15 @@
 		{{ Form::select('client_id', $clients,null, ['class' => 'form-control']) }}
 		{{ $errors->first('client_id', '<div class="text-danger">:message</div>') }}
 	</div>
-	<div class="form-group col-lg-6">
+	<div class="form-group col-lg-4">
 		{{ Form::label('department', 'Department:') }}
-		{{ Form::select('department', $departments,null, ['class' => 'form-control']) }}
+		{{ Form::select('department', $departments,null, ['class' => 'form-control dpt_select']) }}
 		{{ $errors->first('department', '<div class="text-danger">:message</div>') }}
+	</div>
+	<div class="form-group col-lg-2 margintop3">
+		
+		@include('contacts.modal')
+		
 	</div>
 	<div class="form-group col-lg-6">
 		{{ Form::label('title', 'Title:') }}

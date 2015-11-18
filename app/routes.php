@@ -24,3 +24,4 @@ Route::resource('permissions', 'PermissionsController', $options);
 Route::resource('clients', 'ClientsController', $options);
 Route::resource('contacts', 'ContactsController', $options);
 Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
+Route::post('ajax/add', "AjaxController@create");

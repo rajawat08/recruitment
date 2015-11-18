@@ -1,4 +1,5 @@
 /*---LEFT BAR ACCORDION----*/
+var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
 $(function() {
     $('#nav-accordion').dcAccordion({
         eventType: 'click',
@@ -14,6 +15,8 @@ $(function() {
 
     // chosen select box
    $(".chosen-industry").chosen({no_results_text: "Oops, nothing found!"});
+
+
     
 });
 
@@ -118,3 +121,35 @@ var Script = function () {
 
 
 }();
+// add new department by user 
+function addDepartment(){
+    console.log("New Department");
+    var dpt_name = document.getElementById("dpt_name").value;
+    console.log(dpt_name);
+    if(dpt_name==""){
+        return false;
+    }
+$data = {
+    'table' : 'client_company_departments',
+    'data' : {
+        'dpt_name' : dpt_name
+    }
+}
+
+    $.ajax({
+       url: baseUrl+'ajax/add',
+       data : $data,
+       dataType : 'json',
+       type : 'POST',
+       success : function(response,status,xhr){
+            console.info(response,status,xhr);
+            if(response.status){
+                var option;
+                option = '<option value="'+ response.data.dpt_code + '">' + response.data.dpt_name+ '</option>';
+                $(".dpt_select").append(option).val(response.data.dpt_code);
+                $('#modal-add-more').modal('toggle');
+            }
+       }
+       
+    });
+}

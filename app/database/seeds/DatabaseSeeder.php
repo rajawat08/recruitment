@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('RolesTableSeeder');
 		$this->call('PermissionsTableSeeder');
 		$this->call('UsersTableSeeder');
-		
+		$this->call('IndustryTableSeeder');
+		$this->call('CountryTableSeeder');
 	}
 
 }
