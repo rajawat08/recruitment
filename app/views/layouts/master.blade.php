@@ -17,6 +17,7 @@
     {{ style('css/table-responsive.css') }}
     {{ style('css/style.css') }}
     {{ style('css/style-responsive.css') }}
+    {{ style('css/chosen.css') }}
 
 	
 	@yield('style')
@@ -58,6 +59,7 @@
     {{ script('js/jquery.dcjqaccordion.2.7.js')}}
     {{ script('js/jquery.scrollTo.min.js')}}
    {{ script('assets/ckeditor/ckeditor.js') }}
+   {{ script('js/chosen.jquery.min.js') }}
 	@yield('script')
 </body>
 </html>
