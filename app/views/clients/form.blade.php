@@ -68,11 +68,7 @@
 		{{ Form::select('revenue_type', $revenue, null, ['class' => 'form-control']) }}
 		{{ $errors->first('revenue_type', '<div class="text-danger">:message</div>') }}
 	</div>
-	<div class="form-group col-lg-6">
-		{{ Form::label('industry', 'Industry:') }}
-		{{ Form::select('industry',$industry, null, ['class' => 'form-control']) }}
-		{{ $errors->first('industry', '<div class="text-danger">:message</div>') }}
-	</div>
+	
 	<div class="form-group col-lg-6">
 		{{ Form::label('billing_rate', 'Billing Rate:') }}
 		{{ Form::text('billing_rate', null, ['class' => 'form-control']) }}
@@ -102,6 +98,11 @@
 		{{ Form::label('managed_by', 'Managed By:') }}
 		{{ Form::select('managed_by',$users, null, ['class' => 'form-control']) }}
 		{{ $errors->first('managed_by', '<div class="text-danger">:message</div>') }}
+	</div>
+	<div class="form-group col-lg-6">
+		{{ Form::label('industry', 'Industry:') }}
+		{{ Form::select('industry',$industry, null, ['class' => 'form-control chosen-industry']) }}
+		{{ $errors->first('industry', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group col-lg-12">
 		{{ Form::label('notes', 'Notes:') }}

@@ -11,6 +11,10 @@ $(function() {
 //        cookie: 'dcjq-accordion-1',
         classExpand: 'dcjq-current-parent'
     });
+
+    // chosen select box
+   $(".chosen-industry").chosen({no_results_text: "Oops, nothing found!"});
+    
 });
 
 var Script = function () {
