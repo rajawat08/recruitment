@@ -1,6 +1,6 @@
 /*---LEFT BAR ACCORDION----*/
-var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
-//var baseUrl = "http://manageamazon.com/CRM/index.php/";
+//var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
+var baseUrl = "http://manageamazon.com/CRM/index.php/";
 $(function() {
     $('#nav-accordion').dcAccordion({
         eventType: 'click',
