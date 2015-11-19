@@ -93,4 +93,58 @@ class AjaxController extends \BaseController {
 		//
 	}
 
+	/**
+	 * convert lead to Account
+	 * POST /ajax/converttoclient
+	 *
+	 * @return Response
+	 */
+	public function convertToClient()
+	{
+		
+
+		$data = Input::get('data');
+		$leads = $data['leads'];
+
+		for ($i=0; $i < count($leads) ; $i++) { 
+			$client = [];
+			$leadInfo = Lead::findOrFail($leads[$i]);
+			
+
+			$client['account_name'] = trim($leadInfo->lead_account_name) !="" ? $leadInfo->lead_account_name : $leadInfo->first_name." ".$leadInfo->last_name;
+			$client['email'] = $leadInfo->email;
+			$client['website'] = $leadInfo->website;
+			$client['phone'] = $leadInfo->mobile_phone;
+			$client['fax'] = $leadInfo->fax;
+			$client['secondary_phone'] = $leadInfo->work_phone;
+			$client['address'] = $leadInfo->address;
+			$client['city'] = $leadInfo->city;
+			$client['state'] = $leadInfo->state;
+			$client['country'] = $leadInfo->country;
+			$client['account_type'] = "account";
+			$client['status'] = "active";
+			$client['industry'] = $leadInfo->industry;
+			$client['added_by'] = $leadInfo->added_by;
+			$client['managed_by'] = $leadInfo->managed_by;
+			$client['notes'] = $leadInfo->notes;			
+			$source = "./uploads/leads/docs/".$leadInfo->doc_path;
+			$destination = "./uploads/".$leadInfo->doc_path;
+			if(file_exists($source)){
+				if(copy($source, $destination)){
+	        		unlink($source);
+	        		$client['contract_path'] = $leadInfo->doc_path;
+	        		
+	        	}
+			}
+			
+			Client::create($client);
+			Lead::destroy($leads[$i]);
+		
+			
+		}
+		return Response::make(array('status' => true));
+
+		
+	}
+
 }

@@ -154,3 +154,43 @@ $data = {
        
     });
 }
+
+// convert to client from selected leads
+function convertToClient(){
+    console.log($("#leads").find(":input[type=checkbox]"));
+    var items = $("#leads").find(":input[type=checkbox]");
+    var selected = [];
+    $.each(items,function(index,item){
+        console.log($(item).prop('checked'));
+        if($(item).prop('checked')){
+            selected.push($(item).val());
+        }
+    });
+    console.log(selected);
+    if(!selected.length){
+        alert("please select leads");
+        return;
+    }
+
+    $data = {        
+        'data' : {
+            'leads' : selected
+        }
+    }
+
+    $.ajax({
+       url: baseUrl+'ajax/converttoclient',
+       data : $data,
+       dataType : 'json',
+       type : 'POST',
+       success : function(response,status,xhr){
+            console.info(response,status,xhr);
+            if(response.status){
+               window.location.reload();
+            }
+       }
+       
+    });
+
+
+}

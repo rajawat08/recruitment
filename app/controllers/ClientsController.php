@@ -49,7 +49,10 @@ class ClientsController extends \BaseController {
 		$clients = $this->clients->paginate(10);
         
 		$fullPath = self::$fullPath;
-        return View::make('clients.index', compact('clients','fullPath'));
+
+		$industry = DB::table('industry')->lists('name','id');
+		//print_r($industry); exit;
+        return View::make('clients.index', compact('clients','fullPath','industry'));
 	}
 
 	/**

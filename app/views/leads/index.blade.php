@@ -9,13 +9,15 @@
                           <header class="panel-heading">
                               All Leads ({{ $leads->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('leads.create', 'Add New') }}</small>
+		{{ link_to_route('leads.create', 'Add New',null, ['class' => 'btn btn-info btn-xs']) }}
+    <a href="javascript:;" class="btn btn-info btn-xs" onclick="convertToClient()" > Convert To Client </a>    
                           </header>
                           <div class="panel-body">
                               <section id="unseen">
-                                <table class="table table-bordered table-striped table-condensed">
+                                <table id="leads" class="table table-bordered table-striped table-condensed">
                                   <thead>
-                                  <tr>                                     
+                                  <tr>
+                                      <th></th>                                   
                                       <th>Lead Name</th>
                                       <th >Client</th>
                                       <th >Contact Number</th>
@@ -30,7 +32,7 @@
                                   <tbody>
                                  @foreach ($leads as $lead)
 								<tr>
-									
+									<td><input type="checkbox" value='{{$lead->id}}'  /></td>
 									<td>{{ $lead->name }}</td>
 									<td>{{ $lead->client_account_name }}</td>
 									<td>{{ $lead->mobile_phone }}</td>

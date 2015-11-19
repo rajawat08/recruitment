@@ -9,7 +9,7 @@
                           <header class="panel-heading">
                               All Accounts ({{ $clients->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('clients.create', 'Add New') }}</small>
+		<small>{{ link_to_route('clients.create', 'Add New',null, ['class' => 'btn btn-info btn-xs']) }}</small>
                           </header>
                           <div class="panel-body">
                               <section id="unseen">
@@ -19,7 +19,7 @@
                                       <th>Account Name</th>
                                       <th >Website</th>
                                       <th >Email</th>
-                                      <th >Phone</th>
+                                      <th >Document</th>
                                       <th >Type</th>
                                       <th >Revenue Type</th>
                                       <th >Status</th>
@@ -40,7 +40,7 @@
                   <td>{{ $client->account_type }}</td>
                   <td>{{ $client->revenue_type }}</td>
                   <td>{{ ucfirst($client->status) }}</td>
-                  <td>{{ ucfirst($client->industry) }}</td>
+                  <td>{{ isset($industry[$client->industry]) ? $industry[$client->industry] : $client->industry; }}</td>
                   <td>{{ $client->user->name }}</td>
 									<td>{{ $client->created_at }}</td>
 									<td class="text-center">
@@ -57,12 +57,13 @@
                                  
                                   </tbody>
                               </table>
+                              <div class="text-center">
+    {{ pagination_links($clients) }}
+  </div> 
                               </section>
                           </div>
                       </section>
                   </div>
               </div>
-	<div class="text-center">
-		{{ pagination_links($clients) }}
-	</div>   
+	  
 @endsection
