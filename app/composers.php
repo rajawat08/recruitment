@@ -28,10 +28,7 @@ View::composer('clients.form', function($view)
 
 	 $account_type = Config::get('crm.client_account_type');
 
-	 $status = array(
-	 					"active" => "Active",
-	 					"in-active" => "In Active"
-	 				);
+	 $status = Config::get('crm.client_status');
 	 
 	 $revenue = array(
 	 					"low" => "Low",
@@ -39,7 +36,8 @@ View::composer('clients.form', function($view)
 	 					"high" => "High"
 	 				);
 	 $industry = DB::table('industry')->lists('name', 'id');
-        $view->with(compact('users','account_type','status','revenue','countries','industry'));
+
+     $view->with(compact('users','account_type','status','revenue','countries','industry'));
    
 });
 
@@ -68,4 +66,30 @@ View::composer('contacts.form', function($view)
    
 });
 
+
+// for lead form 
+View::composer('leads.form', function($view)
+{
+	 
+	 $users = User::lists('name', 'id');
+
+	 $countries = Country::lists('name', 'code'); 
+
+	 $gender = array(
+	 					"M" => "Male",
+	 					"F" => "FeMale",
+	 					"NA" => "Not Applicable",
+	 					"NBD" => "Not be disclosed"
+	 				);
+	 
+	 $status = Config::get('crm.lead_status');
+
+	 $lead_sources = Config::get("crm.lead_source");
+	 
+	 $account_type = Config::get('crm.client_account_type');
+	 $industry = DB::table('industry')->lists('name', 'id');
+	 
+     $view->with(compact('users','status','gender','lead_sources','countries','account_type','industry'));
+   
+});
 

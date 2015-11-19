@@ -17,11 +17,15 @@
 // });
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::resource('login', 'LoginController', ['only' => ['index', 'store']]);
+
+Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
+Route::post('ajax/add', "AjaxController@create");
+
+// resource controllers 
 $options = ['except' => ['show']];
 Route::resource('users', 'UsersController',$options);
 Route::resource('roles', 'RolesController', $options);
 Route::resource('permissions', 'PermissionsController', $options);
 Route::resource('clients', 'ClientsController', $options);
 Route::resource('contacts', 'ContactsController', $options);
-Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
-Route::post('ajax/add', "AjaxController@create");
+Route::resource('leads', 'LeadsController', $options);

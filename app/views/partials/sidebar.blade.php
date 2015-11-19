@@ -47,6 +47,10 @@
                           <i class="fa fa-user"></i>
                           <span>Leads</span>
                       </a>
+                      <ul class="sub">
+                           <li>{{HTML::link("/leads", 'All Leads');}}</li>
+                          <li>{{HTML::link("/leads/create", 'Add New')}}</li>
+                      </ul>
                   </li>
 
                   <li class="sub-menu">
