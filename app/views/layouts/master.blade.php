@@ -7,7 +7,7 @@
     <meta name="author" content="Rajawat">
     <meta name="keyword" content="">
 	
-	<title> Administrator </title>
+	<title> @yield('title') </title>
 	
     {{ style('css/bootstrap.min.css') }}
     {{ style('css/bootstrap-reset.css') }}
