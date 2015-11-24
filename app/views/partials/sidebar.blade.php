@@ -4,54 +4,43 @@
               
               <ul class="sidebar-menu" id="nav-accordion">
                   <li>
-                      <a class="active" href="{{url('/')}}">
+                      <a  class="{{ Request::is('/')  ? 'active' : '' }}" href="{{url('/')}}">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a class="{{ Request::is('users') || Request::is('users/*') || Request::is('roles') || Request::is('roles/*')  ? 'active' : '' }}" href="javascript:;" >
                           <i class="fa fa-user"></i>
                           <span>Users</span>
                       </a>
                       <ul class="sub">
-                          <li>{{HTML::link("/users", 'All users');}}</li>
-                           <li>{{HTML::link("/users/create", 'Add New')}}</li>
-                          <li>{{HTML::link("/roles", 'Roles')}}</li>
-                          <li>{{HTML::link("/permissions", 'Permissions')}}</li>
+                          <li class="{{ Request::is('users') || Request::is('users/*')  ? 'active' : '' }}" >{{HTML::link("/users", 'All users');}}</li>                           
+                          <li class="{{ Request::is('roles') || Request::is('roles/*')  ? 'active' : '' }}">{{HTML::link("/roles", 'Roles')}}</li>
+                          <li class="{{ Request::is('permissions') || Request::is('permissions/*')  ? 'active' : '' }}">{{HTML::link("/permissions", 'Permissions')}}</li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
+                  <li>
+                      <a class="{{ Request::is('clients') || Request::is('clients/*')  ? 'active' : '' }}" href="{{url('/clients')}}">
                           <i class="fa fa-users"></i>
-                          <span>Accounts</span>                         
+                          <span>Accounts</span>
                       </a>
-                      <ul class="sub">
-                           <li>{{HTML::link("/clients", 'All Clients');}}</li>
-                          <li>{{HTML::link("/clients/create", 'Add New')}}</li>
-                      </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
+
+                   <li>
+                      <a class="{{ Request::is('contacts') || Request::is('contacts/*')  ? 'active' : '' }}"  href="{{url('/contacts')}}">
                           <i class="fa fa-phone"></i>
                           <span>Contacts</span>
                       </a>
-                      <ul class="sub">
-                           <li>{{HTML::link("/contacts", 'All Contacts');}}</li>
-                          <li>{{HTML::link("/contacts/create", 'Add New')}}</li>
-                      </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
+                   <li>
+                      <a class="{{ Request::is('leads') || Request::is('leads/*')  ? 'active' : '' }}"  href="{{url('/leads')}}">
                           <i class="fa fa-user"></i>
                           <span>Leads</span>
                       </a>
-                      <ul class="sub">
-                           <li>{{HTML::link("/leads", 'All Leads');}}</li>
-                          <li>{{HTML::link("/leads/create", 'Add New')}}</li>
-                      </ul>
                   </li>
+
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
