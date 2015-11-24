@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+   Edit Clients
+@stop
+
 @section('content')
 
     <div class="row">

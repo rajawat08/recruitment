@@ -39,4 +39,13 @@ class Client extends \Eloquent {
         return $this->belongsTo('User','added_by');
     }
 
+      /**
+     * manageBy
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manageBy()
+    {
+        return $this->belongsTo('User','managed_by');
+    }
+
 }

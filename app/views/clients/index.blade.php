@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Clients
+@stop
+
 @section('content')
 	
 	<div class="row">
@@ -16,8 +20,7 @@
                                 <table class="table table-bordered table-striped table-condensed">
                                   <thead>
                                   <tr>                                     
-                                      <th>Account Name</th>
-                                      <th >Website</th>
+                                      <th>Account Name</th>                                      
                                       <th >Email</th>
                                       <th >Document</th>
                                       <th >Type</th>
@@ -33,8 +36,8 @@
                                  @foreach ($clients as $client)
 								<tr>
 									
-									<td>{{ $client->account_name }}</td>
-									<td>{{ $client->website }}</td>
+									<td><a title="view client details" href="{{ route('clients.show', $client->id) }}">{{ $client->account_name }}</a></td>
+									
 									<td>{{ $client->email }}</td>
 									<td>{{ $client->contract_path != "" ? HTML::link($fullPath."/".$client->contract_path,'contract',['target' => '_blank']) :'N/A' }}</td>
                   <td>{{ $client->account_type }}</td>

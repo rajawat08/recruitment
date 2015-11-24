@@ -119,7 +119,9 @@ class ClientsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		 
+		 $client = $this->clients->findOrFail($id);
+
+         return $this->view('clients.view', compact('client'));
 	}
 
 	/**

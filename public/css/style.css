@@ -741,6 +741,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 }
 
+.state-overview .client-symbols{
+    width:35% !important;
+    padding:15px 10px !important;
+}
+
 .state-overview .value h1, .state-overview .value p  {
     margin: 0;
     padding: 0;
@@ -2338,6 +2343,10 @@ ul.inbox-pagination li {
     -webkit-border-radius: 4px 4px 0 0;
     padding: 30px;
     text-align: center;
+}
+
+.client-heading{
+    padding:10px 15px !important;
 }
 
 .profile-nav .user-heading.round a  {

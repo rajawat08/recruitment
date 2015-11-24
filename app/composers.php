@@ -20,7 +20,7 @@ View::composer(['roles.form','roles.modal'], function($view)
    
 });
 
-View::composer('clients.form', function($view)
+View::composer(['clients.form','clients.view'], function($view)
 {
 	 $users = User::lists('name', 'id');
 

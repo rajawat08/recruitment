@@ -27,6 +27,6 @@ $options = ['except' => ['show']];
 Route::resource('users', 'UsersController',$options);
 Route::resource('roles', 'RolesController', $options);
 Route::resource('permissions', 'PermissionsController', $options);
-Route::resource('clients', 'ClientsController', $options);
+Route::resource('clients', 'ClientsController');
 Route::resource('contacts', 'ContactsController', $options);
 Route::resource('leads', 'LeadsController', $options);
