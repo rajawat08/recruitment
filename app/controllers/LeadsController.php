@@ -90,7 +90,9 @@ class LeadsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$lead = $this->leads->findOrFail($id);
+
+		return View::make('leads.view', compact('lead'));
 	}
 
 	/**

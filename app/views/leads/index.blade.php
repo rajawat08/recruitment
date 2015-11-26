@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+  All Leads 
+@stop
+
 @section('content')
 	
 	<div class="row">
@@ -33,7 +37,7 @@
                                  @foreach ($leads as $lead)
 								<tr>
 									<td><input type="checkbox" value='{{$lead->id}}'  /></td>
-									<td>{{ $lead->name }}</td>
+									<td><a href="{{route('leads.show',$lead->id)}}" >{{ $lead->name }}</a></td>
 									<td>{{ $lead->client_account_name }}</td>
 									<td>{{ $lead->mobile_phone }}</td>
 									<td>{{ $lead->doc_path != "" ? HTML::link($fullPath."/".$lead->doc_path,'Docs',['target' => '_blank']) :'N/A' }}</td>

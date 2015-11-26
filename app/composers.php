@@ -68,7 +68,7 @@ View::composer(['contacts.form','contacts.view'], function($view)
 
 
 // for lead form 
-View::composer('leads.form', function($view)
+View::composer(['leads.form','leads.view'], function($view)
 {
 	 
 	 $users = User::lists('name', 'id');
