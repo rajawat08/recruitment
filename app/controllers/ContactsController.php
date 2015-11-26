@@ -75,7 +75,9 @@ class ContactsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$contact = $this->contacts->findOrFail($id);
+		
+         return $this->view('contacts.view', compact('contact'));
 	}
 
 	/**

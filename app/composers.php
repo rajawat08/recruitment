@@ -41,7 +41,7 @@ View::composer(['clients.form','clients.view'], function($view)
    
 });
 
-View::composer('contacts.form', function($view)
+View::composer(['contacts.form','contacts.view'], function($view)
 {
 	 $departments = DB::table('client_company_departments')->lists('dpt_name','dpt_code');
 	 $users = User::lists('name', 'id');

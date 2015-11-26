@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+All Contacts
+@stop
+
 @section('content')
 	
 	<div class="row">
@@ -31,7 +35,7 @@
                                  @foreach ($contacts as $contact)
 								<tr>
 									
-									<td>{{ $contact->first_name }}</td>
+									<td><a href="{{route('contacts.show',$contact->id)}}" >{{ $contact->first_name }}</a></td>
 									<td>{{ $contact->client->account_name }}</td>
 									<td>{{ $contact->mobile_phone }}</td>									
                   <td>{{ $contact->email }}</td>

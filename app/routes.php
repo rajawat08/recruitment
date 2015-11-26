@@ -28,5 +28,5 @@ Route::resource('users', 'UsersController',$options);
 Route::resource('roles', 'RolesController', $options);
 Route::resource('permissions', 'PermissionsController', $options);
 Route::resource('clients', 'ClientsController');
-Route::resource('contacts', 'ContactsController', $options);
-Route::resource('leads', 'LeadsController', $options);
+Route::resource('contacts', 'ContactsController');
+Route::resource('leads', 'LeadsController');
