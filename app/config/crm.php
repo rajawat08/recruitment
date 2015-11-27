@@ -21,6 +21,13 @@ return array(
 	
 	'lead_status' => ['attempted_to_contact' => 'Attempted to Contact', 'contact_in_future' => 'Contact in future', 'contacted' => 'Contacted', 'junk_lead' => 'Junk Lead','lost_lead' => 'Lost Lead','not_contacted' => 'Not Contacted' , 'pre_qualified' => 'Pre Qualified' , 'qualified' => 'Qualified','warm' => 'Warm' , 'company_profile_terms_sent' => 'Company Profile & Terms Sent', 'need_to_follow_up' => 'Need to follow up', 'will_call_back_if_interested' => 'Will call back if interested'],
 
+	'opening_position_level' => [],
+	'opening_position_type' => [],
+	'opening_department' => [],
+	'opening_job_skills' => ["abc" => "abc", '123' => '123'],
+	'opening_salary_range' => ["less than 100000" ,"100000 to 4000000" ,"400000 above"],
+	'opening_status' => ['active' => 'Active','in-progress' => 'In Progress', 'close' => 'Closed']
+
 	);
 
 

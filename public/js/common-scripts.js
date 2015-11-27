@@ -17,6 +17,14 @@ $(function() {
     // chosen select box
    $(".chosen-industry").chosen({no_results_text: "Oops, nothing found!"});
 
+    $('.choose-client').change(function(e) {
+        console.log($(e.target).val());
+        if($(e.target).val()>0){
+            getClientContacts($(e.target).val());
+        }
+        
+   });
+
 
     
 });
@@ -193,4 +201,36 @@ function convertToClient(){
     });
 
 
+}
+
+// add new department by user 
+function getClientContacts(client){
+    console.log(client,"getClientContacts");
+    
+$data = {
+    'table' : 'contacts',
+    'data' : {
+        'client' : client
+    }
+}
+
+    $.ajax({
+       url: baseUrl+'ajax/read',
+       data : $data,
+       dataType : 'json',
+       type : 'POST',
+       success : function(response,status,xhr){
+            console.info(response,status,xhr);
+           
+            if(response.status){
+                var option;
+                for(var item in response.data)
+                option += '<option value="'+ response.data[item].id + '">' + response.data[item].first_name+ '</option>';
+                console.log(option);
+                $(".client-contacts").empty().append(option);
+                
+            }
+       }
+       
+    });
 }

@@ -10,7 +10,7 @@ class AjaxController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		
 	}
 
 	/**
@@ -29,6 +29,25 @@ class AjaxController extends \BaseController {
 			$data['dpt_code'] = $code;	
 			$data['user_id'] = 1;	
 			DB::table($table)->insert($data);
+			return Response::make(array('status' => true, 'data' =>$data));
+		}
+
+	}
+
+	/**
+	 * add new resource as per request
+	 * POST /ajax/read
+	 *
+	 * @return Response
+	 */
+	public function fetch()
+	{
+		//print_r(Input::all());
+		$table  = Input::get('table');
+		$data  = Input::get('data');
+		
+		if($table =='contacts'){			
+			$data = Contact::where('id','=',$data['client'])->get();
 			return Response::make(array('status' => true, 'data' =>$data));
 		}
 
