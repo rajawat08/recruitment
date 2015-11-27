@@ -50,7 +50,7 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a class="{{ Request::is('openings') || Request::is('openings/*')  ? 'active' : '' }}"  href="{{url('/openings')}}" >
                           <i class="fa fa-at"></i>
                           <span>Openings</span>
                       </a>
