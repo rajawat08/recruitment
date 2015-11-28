@@ -115,7 +115,9 @@ class OpeningsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$opening = $this->openings->findOrFail($id);
+		$opening->job_skill_categories = json_decode($opening->job_skill_categories);
+         return $this->view('openings.edit', compact('opening'));
 	}
 
 	/**
@@ -127,7 +129,43 @@ class OpeningsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		//print_r(Input::all()); exit;
+		$validation = Validator::make(Input::all(), Opening::$rules);
+        if (!$validation->passes()) {
+            return Redirect::route('openings.edit',$id)
+                ->withInput()
+                ->withErrors($validation)
+                ->withFlashMessage("There were validation errors.")
+                ->withFlashType('danger');
+                
+        }
+
+        $input = array_filter(
+            Input::except('_token','doc_path'),
+            function ($val) {
+                return !empty($val);
+            }
+        );
+        $input['job_skill_categories'] = json_encode($input['job_skill_categories']);
+        $opening = $this->openings->findOrFail($id);
+        $opening->update($input);
+
+        if(Input::hasFile('doc_path')){
+        	$document = array();
+        	$file = Input::file('doc_path');
+        	$ext = $file->getClientOriginalExtension();        	
+        	$fileName = gen_uuid().".".$ext;        	
+        	if($file->move(self::$filePath, $fileName)){
+        		$document['doc_path'] = $fileName;
+        		$document['document_belongs'] = $opening->document_belongs;
+        		Document::create($document);
+        	}
+        	
+        }
+
+        return $this->redirect('openings.index');
+
+
 	}
 
 	/**

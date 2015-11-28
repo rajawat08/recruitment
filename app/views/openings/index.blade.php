@@ -37,7 +37,7 @@
 								<tr>
 									
 								
-									<td>{{ $opening->position_title }}</td>
+									<td><a href="{{route('openings.show',$opening->id)}}" >{{ $opening->position_title }}</a></td>
 									<td>{{ $opening->client->account_name }}</td>									
                   <td>{{ $opening->created_at }}</td>
                   <td>{{ $opening->due_date }}</td>

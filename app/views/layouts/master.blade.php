@@ -11,14 +11,12 @@
 	
     {{ style('css/bootstrap.min.css') }}
     {{ style('css/bootstrap-reset.css') }}
-    {{style('assets/font-awesome/css/font-awesome.css')}}
-    {{style('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}
-    {{ style('css/owl.carousel.css') }}
+    {{style('assets/font-awesome/css/font-awesome.css')}} 
     {{ style('css/table-responsive.css') }}
     {{ style('css/style.css') }}
     {{ style('css/style-responsive.css') }}
     {{ style('css/chosen.css') }}
-
+    {{ style('assets/bootstrap-datepicker/css/datepicker.css')}}
 	
 	@yield('style')
 
@@ -42,24 +40,16 @@
     </section>
     {{ script('js/jquery.js') }}
     {{ script('js/jquery-1.8.3.min.js') }}
-    {{ script('js/bootstrap.min.js') }}
-    {{ script('js/all.js') }}
-    {{ script('js/jquery.dcjqaccordion.2.7.js')}}
-    {{ script('js/jquery.scrollTo.min.js')}}
+    {{ script('js/bootstrap.min.js') }} 
     {{ script('js/jquery.nicescroll.js') }}
-    {{ script('js/jquery.sparkline.js') }}
-    {{ script('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}
-    {{ script('js/owl.carousel.js') }}
     {{ script('js/jquery.customSelect.min.js')}}
     {{ script('js/respond.min.js')}}
-    {{ script('js/common-scripts.js') }}
-    {{ script('js/sparkline-chart.js') }}
-    {{ script('js/easy-pie-chart.js') }}
-    {{ script('js/count.js') }}
+    {{ script('js/common-scripts.js') }}  
     {{ script('js/jquery.dcjqaccordion.2.7.js')}}
     {{ script('js/jquery.scrollTo.min.js')}}
    {{ script('assets/ckeditor/ckeditor.js') }}
    {{ script('js/chosen.jquery.min.js') }}
+   {{ script('assets/bootstrap-datepicker/js/bootstrap-datepicker.js')}}
 	@yield('script')
 </body>
 </html>

@@ -21,7 +21,7 @@
 	</div>
 	<div class="form-group col-lg-6">
 		{{ Form::label('due_date', 'Due Date:') }}
-		{{ Form::text('due_date', null, ['class' => 'form-control']) }}
+		{{ Form::text('due_date', null, ['class' => 'form-control default-date-picker' , 'autocomplete' =>'off' , 'placeholder' => 'click here to choose date' , 'readonly' => true]) }}
 		{{ $errors->first('due_date', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group col-lg-6">
@@ -70,7 +70,7 @@
 	<div class="form-group col-lg-6">
 		{{ Form::label('job_skill_categories', 'Job Skills:') }}
 		
-		{{ Form::select('job_skill_categories',$job_skills, isset($model) ? $model->job_skill_categories : null, ['multiple' =>true,'class' => 'form-control chosen-industry']) }}
+		{{ Form::select('job_skill_categories[]',$job_skills, isset($model) ? $model->job_skill_categories : null, ['multiple' =>true,'class' => 'form-control chosen-industry']) }}
 		{{ $errors->first('job_skill_categories', '<div class="text-danger">:message</div>') }}
 
 	</div>

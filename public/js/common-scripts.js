@@ -25,6 +25,11 @@ $(function() {
         
    });
 
+  // date picker
+  $('.default-date-picker').datepicker({
+            format: 'mm-dd-yyyy'
+        });
+
 
     
 });
@@ -61,25 +66,54 @@ var Script = function () {
         $(window).on('resize', responsiveView);
     });
 
+    //  $('.fa-bars').click(function () {
+    //     if ($('#sidebar > ul').is(":visible") === true) {
+    //         $('#main-content').css({
+    //             'margin-left': '0px'
+    //         });
+    //         $('#sidebar').css({
+    //             'margin-left': '-210px'
+    //         });
+    //         $('#sidebar > ul').hide();
+    //         $("#container").addClass("sidebar-closed");
+    //     } else {
+    //         $('#main-content').css({
+    //             'margin-left': '210px'
+    //         });
+    //         $('#sidebar > ul').show();
+    //         $('#sidebar').css({
+    //             'margin-left': '0'
+    //         });
+    //         $("#container").removeClass("sidebar-closed");
+    //     }
+    // });
+
     $('.fa-bars').click(function () {
-        if ($('#sidebar > ul').is(":visible") === true) {
-            $('#main-content').css({
-                'margin-left': '0px'
-            });
-            $('#sidebar').css({
-                'margin-left': '-210px'
-            });
-            $('#sidebar > ul').hide();
+        if (!$('#container').hasClass("sidebar-closed")) {
+            console.log(1);
+            // $('#main-content').css({
+            //     'margin-left': '0px'
+            // });
+            // $('#sidebar').css({
+            //     'margin-left': '-100px'
+            // });
+            //$('#sidebar > ul').hide();
+            $("#sidebar").css({'width':65});
             $("#container").addClass("sidebar-closed");
+            
+            $("ul.sidebar-menu li a span").css({display:'none'});
         } else {
-            $('#main-content').css({
-                'margin-left': '210px'
-            });
-            $('#sidebar > ul').show();
-            $('#sidebar').css({
-                'margin-left': '0'
-            });
+            console.log(2);
+            // $('#main-content').css({
+            //     'margin-left': '210px'
+            // });
+            // $('#sidebar > ul').show();
+            // $('#sidebar').css({
+            //     'margin-left': '0'
+            // });
+            $("#sidebar").css({'width':210});
             $("#container").removeClass("sidebar-closed");
+            $("ul.sidebar-menu li a span").css({display:'inline-block'});
         }
     });
 
@@ -118,15 +152,15 @@ var Script = function () {
 
 // custom bar chart
 
-    if ($(".custom-bar-chart")) {
-        $(".bar").each(function () {
-            var i = $(this).find(".value").html();
-            $(this).find(".value").html("");
-            $(this).find(".value").animate({
-                height: i
-            }, 2000)
-        })
-    }
+    // if ($(".custom-bar-chart")) {
+    //     $(".bar").each(function () {
+    //         var i = $(this).find(".value").html();
+    //         $(this).find(".value").html("");
+    //         $(this).find(".value").animate({
+    //             height: i
+    //         }, 2000)
+    //     })
+    // }
 
 
 }();
