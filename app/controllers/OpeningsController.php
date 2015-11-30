@@ -103,7 +103,11 @@ class OpeningsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$opening = $this->openings->findOrFail($id);
+		$opening->job_skill_categories = json_decode($opening->job_skill_categories);
+		$contact = DB::table('contacts')->where('id','=',$opening->client_contact_id)->get();
+		
+         return $this->view('openings.view', compact('opening','contact'));
 	}
 
 	/**
@@ -117,6 +121,7 @@ class OpeningsController extends \BaseController {
 	{
 		$opening = $this->openings->findOrFail($id);
 		$opening->job_skill_categories = json_decode($opening->job_skill_categories);
+
          return $this->view('openings.edit', compact('opening'));
 	}
 

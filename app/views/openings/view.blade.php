@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  Lead | Profile | {{$lead->first_name." ".$lead->last_name}}
+  Opening | {{$opening->position_title}}
 @stop
 
 @section('content')
@@ -10,13 +10,12 @@
 		<aside class="profile-nav alt green-border col-lg-3">
                       <section class="panel">
                           <div class="user-heading client-heading alt green-bg">                              
-                              <h1>{{$lead->first_name." ".$lead->last_name}}</h1>
-                              <p>{{$lead->city.", ".$countries[$lead->country]}}</p>
+                              <h1>{{$opening->position_title}}</h1>
+                              <p>{{$opening->position_level}}</p>
                               
-                              <p> <span class="label label-primary">{{$status[$lead->status]}}
+                              <p> <span class="label label-primary">{{$status[$opening->status]}}
                               
-                              
-                              ({{isset($lead_sources[$lead->lead_source]) ? $lead_sources[$lead->lead_source] : $lead->lead_source }})
+                             
                               </span>
                               </p>
                           </div>
@@ -24,9 +23,9 @@
                           <ul class="nav nav-pills nav-stacked">
                               <li class="active"><a href="javascript:;"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
                              <!--  <li><a href="profile-activity.html"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li> -->
-                              <li><a href="{{route('leads.edit', $lead->id)}}"> <i class="fa fa-edit"></i> Edit Lead</a></li>
+                              <li><a href="{{route('openings.edit', $opening->id)}}"> <i class="fa fa-edit"></i> Edit Opening</a></li>
                               <li><a href="javascript:;"  onclick="javascript:alert('In progress')" > <i class="fa fa-file"></i> Documents</a></li>
-                              <li><a href="{{route('leads.index')}}"> <i class="fa fa-arrow-left"></i> Back</a></li>
+                              <li><a href="{{route('openings.index')}}"> <i class="fa fa-arrow-left"></i> Back</a></li>
 
                           </ul>
 
@@ -39,51 +38,19 @@
 						<div class="panel-body">
 							<div class="state-overview col-lg-6">
                   <section class="panel">
-                      <div class="symbol client-symbols blue" title="Contact Email">
-                          <i class="fa fa-envelope"></i>
+                      <div class="symbol client-symbols blue" title="No Of Openings">
+                          <i class="fa fa-tags"></i>
                       </div>
                       <div class="value">
-                        @if($lead->email)
-                          <h4><a href="mailto:{{$lead->email}}">{{$lead->email}}</a></h4>
-                        @else
-                         "N/A"
-                        @endif
+                       
+                          <h4>{{$opening->no_of_openings}} openings</h4>
+                        
 
                           
                       </div>
                   </section>
               </div>
-              <div class="state-overview col-lg-3">
-                  <section class="panel">
-                      <div class="symbol client-symbols blue" title="Contact Mobile">
-                          <i class="fa fa-mobile"></i>
-                      </div>
-                      <div class="value">
-                        @if($lead->mobile_phone)
-                          <h4>{{$lead->mobile_phone}}</h4>
-                        @else
-                          "N/A" 
-                        @endif
-                          
-                      </div>
-                  </section>
-              </div>
-
-              <div class="state-overview col-lg-3">
-                    <section class="panel">
-                        <div class="symbol client-symbols blue" title="Contact Phone">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="value">
-                          @if($lead->work_phone)
-                            <h4>{{$lead->work_phone}}</h4>
-                          @else
-                           "N/A"
-                          @endif
-                            
-                        </div>
-                    </section>
-                </div>
+             
 
 						</div>
 					</section> 
@@ -93,62 +60,73 @@
                               <h1>Basic Details</h1>
                               <div class="row">
                                   <div class="bio-row">
-                                      <p><span>Client</span>: &nbsp;{{$lead->first_name." ".$lead->last_name}}</p>
+                                      <p><span>Position Title</span>: &nbsp;{{$opening->position_title." ".$opening->last_name}}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Title</span>: &nbsp;{{$lead->title ? $lead->title : "N/A"}}</p>
+                                      <p><span>Openings</span>: &nbsp;{{$opening->no_of_openings ? $opening->no_of_openings : "N/A"}}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Position Level</span>: &nbsp;{{$opening->position_level ? $opening->position_level : "N/A"}}</p>
                                   </div>
                                    <div class="bio-row">
-                                      <p><span>Industry</span>: &nbsp;{{isset($industry[$lead->industry]) ? $industry[$lead->industry]  : $lead->industry}}</p>
+                                      <p><span>Due Date</span>: &nbsp;{{$opening->due_date}}</p>
                                   </div>                                  
                                   <div class="bio-row">
-                                      <p><span>Lead Source</span>: &nbsp;{{isset($lead_sources[$lead->lead_source]) ? $lead_sources[$lead->lead_source] : $lead->lead_source }}</p>
+                                      <p><span>Position Type </span>: &nbsp;{{$opening->postion_type ? $opening->postion_type : "N/A" }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Source Name</span>: &nbsp; {{$lead->lead_source_name ? $lead->lead_source_name : "N/A"}} </p>
+                                      <p><span>department</span>: &nbsp; {{$opening->lead_source_name ? $opening->lead_source_name : "N/A"}} </p>
+                                  </div>                                
+                                 <div class="bio-row">
+                                      <p><span>priority</span>: &nbsp; {{$opening->priority ? $opening->priority : "N/A"}} </p>
                                   </div>
-                                 
-                                 
+                                  <div class="bio-row">
+                                      <p><span>Salary Range</span>: &nbsp; {{$opening->salary_range ? $salary_range[$opening->salary_range]: "N/A"}} </p>
+                                  </div>
+                                   <div class="bio-row">
+                                      <p><span>status</span>: &nbsp; {{$opening->status ? $status[$opening->status] : "N/A"}} </p>
+                                  </div>
+                                   <div class="bio-row">
+                                      <p><span>Client</span>: &nbsp; {{$opening->client->account_name ? link_to_route('clients.show',$opening->client->account_name,$opening->client_id) : "N/A"}} </p>
+                                  </div>
+                                   <div class="bio-row">
+                                      <p><span>Skills </span>: 
+                                        @for($i=0;$i<count($opening->job_skill_categories); $i++)
+
+                                         <span class="label label-primary" style="width:auto !important;">{{$opening->job_skill_categories[$i] }}</span>
+                                        @endfor
+                                        </p>
+                                  </div>
                               </div>
                           </div>
                       </section>
 
                       <section class="panel">
 						<header class="panel-heading">
-						Other Details						
+						Contact Details						
 						</header>
 						<div class="panel-body bio-graph-info">
 							<div class="row">
+                                 
                                   <div class="bio-row">
-                                      <p><span>Address</span>: &nbsp;{{$lead->address ? $lead->address : "N/A"}}</p>
+                                      <p><span>City</span>: &nbsp;{{$opening->city ? $opening->city : "N/A"}}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>City</span>: &nbsp;{{$lead->city ? $lead->city : "N/A"}}</p>
+                                      <p><span>State </span>: &nbsp;{{$opening->state ? $opening->state : "N/A"}}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>State </span>: &nbsp;{{$lead->state ? $lead->state : "N/A"}}</p>
+                                      <p><span>Country </span>: &nbsp;{{$countries[$opening->country]}}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Country </span>: &nbsp;{{$countries[$lead->country]}}</p>
+                                      <p><span>Contact Person</span>: &nbsp;
+                                        {{count($contact) ? link_to_route('contacts.show',$contact[0]->first_name,$contact[0]->id) : 'N/A'}}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Twitter</span>: &nbsp;{{$lead->twitter ? $lead->twitter : 'N/A'}}</p>
+                                      <p><span>Posted At</span>: &nbsp;{{$opening->created_at ? $opening->created_at : 'N/A'}}</p>
                                   </div>
-                                  <div class="bio-row">
-                                      <p><span>LinkedIn</span>: &nbsp;{{$lead->linkedin ? $lead->linkedin : 'N/A'}}</p>
-                                  </div>
-                                  <div class="bio-row">
-                                      <p><span>Fax</span>: &nbsp;{{$lead->fax ? $lead->fax : 'N/A'}}</p>
-                                  </div> 
-                                   <div class="bio-row">
-                                      <p><span>Secondary Email</span>: &nbsp;{{$lead->sec_email ? $lead->sec_email : 'N/A'}}</p>
-                                  </div>                                
-                                  <div class="bio-row">
-                                      <p><span>Added By</span>: &nbsp;{{ $lead->user ? $lead->user->name : 'N/A'}}</p>
-                                  </div>
-                                   <div class="bio-row">
-                                      <p><span>Managed By</span>: &nbsp;{{$lead->manageBy ? $lead->manageBy->name : 'N/A'}}</p>
-                                  </div>
+                                                       
+                                  
+                                   
                               </div>
 
 						</div>
@@ -157,10 +135,10 @@
 					
             <section class="panel">
             <header class="panel-heading">
-                          Notes
+                          Job Description
                          </header>
                           <div class="panel-body">
-                                     {{$lead->notes}}
+                                     {{$opening->job_description}}
                                   </div>
                       </section>
                   </aside>
