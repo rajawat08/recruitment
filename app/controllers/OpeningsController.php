@@ -42,7 +42,10 @@ class OpeningsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return $this->view('openings.create');
+		$recruiters = Role::where('slug','=','recruiter')->first();
+		$users = $recruiters->users; 
+		$assign_users = [];
+		return $this->view('openings.create',compact('users','assign_users'));
 	}
 
 	/**
@@ -64,7 +67,7 @@ class OpeningsController extends \BaseController {
         }
 
         $input = array_filter(
-            Input::except('_token','doc_path'),
+            Input::except('_token','doc_path','recruiters'),
             function ($val) {
                 return !empty($val);
             }
@@ -72,9 +75,11 @@ class OpeningsController extends \BaseController {
         
 
         $input['document_belongs'] = gen_uuid();
-
-        //print_r($input);
+        $input['job_skill_categories'] = json_encode($input['job_skill_categories']);
+        //print_r(Input::all()); exit;
         $opening = $this->openings->create($input);
+
+
         
 
         if(Input::hasFile('doc_path')){
@@ -86,8 +91,14 @@ class OpeningsController extends \BaseController {
         		$document['doc_path'] = $fileName;
         		$document['document_belongs'] = $opening->document_belongs;
         		Document::create($document);
+        	}        	
+        }
+
+        if(Input::has('recruiters')){
+        	$recruiters = Input::get('recruiters');
+        	foreach ($recruiters as $key => $value) {
+        		OpeningUser::Create(array("opening_id" => $opening->id,"user_id" => $value ));
         	}
-        	
         }
 
         return Redirect::route('openings.index');
@@ -122,7 +133,19 @@ class OpeningsController extends \BaseController {
 		$opening = $this->openings->findOrFail($id);
 		$opening->job_skill_categories = json_decode($opening->job_skill_categories);
 
-         return $this->view('openings.edit', compact('opening'));
+		$recruiters = Role::where('slug','=','recruiter')->first();
+		$users = $recruiters->users;
+
+		$assign_users = OpeningUser::select('user_id')->where('opening_id',"=",$id)->get()->toArray();
+		if(count($assign_users)>1){
+			$merged = call_user_func_array('array_merge_recursive', $assign_users);
+			$assign_users = $merged['user_id'];
+		}else{
+			$assign_users[0] = $assign_users[0]['user_id'];
+		}
+			
+		//print_r($assign_users); exit;
+         return $this->view('openings.edit', compact('opening','users','assign_users'));
 	}
 
 	/**
@@ -146,13 +169,16 @@ class OpeningsController extends \BaseController {
         }
 
         $input = array_filter(
-            Input::except('_token','doc_path'),
+            Input::except('_token','doc_path','recruiters'),
             function ($val) {
                 return !empty($val);
             }
         );
+        if(Input::has('job_skill_categories'))
         $input['job_skill_categories'] = json_encode($input['job_skill_categories']);
+
         $opening = $this->openings->findOrFail($id);
+        
         $opening->update($input);
 
         if(Input::hasFile('doc_path')){
@@ -166,6 +192,33 @@ class OpeningsController extends \BaseController {
         		Document::create($document);
         	}
         	
+        }
+
+        if(Input::has('recruiters')){
+        $assign_users = OpeningUser::select('user_id')->where('opening_id',"=",$id)->get()->toArray();
+		$merged = call_user_func_array('array_merge_recursive', $assign_users);
+		if(count($assign_users)>1){
+			$merged = call_user_func_array('array_merge_recursive', $assign_users);
+			$assign_users = $merged['user_id'];
+		}else{
+			$assign_users[0] = $assign_users[0]['user_id'];
+		}
+		
+		$remove = array_diff($assign_users,Input::get('recruiters'));
+		$addNew = array_diff(Input::get('recruiters'),$assign_users);
+		// print_r($remove); 
+		// print_r($addNew);
+		// print_r(Input::get('recruiters'));
+		// print_r($assign_users);	
+        	
+        	foreach ($addNew as $key => $value) {
+        		OpeningUser::Create(array("opening_id" => $opening->id,"user_id" => $value ));
+        	}
+
+        	foreach ($remove as $key => $value) {
+        		OpeningUser::where('opening_id' ,"=", $opening->id)->where('user_id','=',$value)->delete();
+        	}
+
         }
 
         return $this->redirect('openings.index');

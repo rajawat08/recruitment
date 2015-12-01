@@ -18,6 +18,10 @@ class RolesTableSeeder extends Seeder {
             'name' => 'User',
             'slug' => 'user'
         ]);
+         Role::create([
+            'name' => 'Recruiter',
+            'slug' => 'recruiter'
+        ]);
 	}
 
 }

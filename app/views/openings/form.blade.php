@@ -95,13 +95,22 @@
 		{{ Form::file('doc_path', ['class' => 'form-control']) }}
 		{{ $errors->first('doc_path', '<div class="text-danger">:message</div>') }}
 	</div>
-	
-	
+	<div class="form-group col-lg-6">
+		{{ Form::label('recruiters', 'Assign to Users:') }}
+		<select name="recruiters[]" class="form-control chosen-industry" multiple=true>
+			@for($i=0;$i<count($users);$i++)
+			<option value="{{$users[$i]->id}}" {{in_array($users[$i]->id,$assign_users) ? "selected" : ""}}>{{$users[$i]->name}}</option>
+			@endfor
+
+		</select>
+	</div>
 	<div class="form-group col-lg-12">
 		{{ Form::label('job_description', 'Job Description:') }}
 		{{ Form::textarea('job_description', null, ['class' => 'form-control ckeditor']) }}
 		{{ $errors->first('job_description', '<div class="text-danger">:message</div>') }}
 	</div>
+	
+	
 	
 	<div class="form-group col-lg-12">
 		{{ Form::submit(isset($model) ? 'Update' : 'Save', ['class' => 'btn btn-primary']) }}
