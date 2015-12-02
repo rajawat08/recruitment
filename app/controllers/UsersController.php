@@ -36,10 +36,17 @@ class UsersController extends \BaseController {
      */
     public function index()
     {
-        $users = $this->users->paginate(10);
+        //$users = $this->users->join('role_user','role_user.user_id','=','users.id')
+               //->where('role_user.role_id',"=",4)->paginate(10);
+                
+        
+        $users = User::whereHas('roles' ,function($q){
+                    $q->where('slug','!=', 'candidate');
+                })->paginate(10);
         $no = $users->getFrom();
-
-        return View::make('users.index', compact('users', 'no'));
+       // $users = User::with('roles')->where('name','admin')->paginate(10);
+       // print_r($users); exit;
+        return View::make('users.index', compact('users','no'));
     }
 
     /**
