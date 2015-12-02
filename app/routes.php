@@ -32,3 +32,4 @@ Route::resource('clients', 'ClientsController');
 Route::resource('contacts', 'ContactsController');
 Route::resource('leads', 'LeadsController');
 Route::resource('openings', 'OpeningsController');
+Route::resource('candidates', 'CandidateController');
