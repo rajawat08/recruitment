@@ -114,3 +114,30 @@ View::composer(['openings.form','openings.view'], function($view)
    
 });
 
+// for openings
+View::composer(['candidates.form','candidates.view','candidates.index'], function($view)
+{
+	 
+	
+
+	 $countries = Country::lists('name', 'code'); 
+
+	 $marital_status =Config::get('crm.candidate_marital_status');
+	 
+	
+	 $status = Config::get('crm.opening_status');
+
+	 $roles = Role::lists('name', 'id');
+	 
+	 $job_skills = Config::get('crm.opening_job_skills');
+
+	 $gender = array(
+	 					"M" => "Male",
+	 					"F" => "FeMale",
+	 					"NA" => "Not Applicable",
+	 					"NBD" => "Not be disclosed"
+	 				);
+     $view->with(compact('gender','status','roles','countries','marital_status','job_skills'));
+   
+});
+

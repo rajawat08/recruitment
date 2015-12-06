@@ -43,7 +43,7 @@
 
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a class="{{ Request::is('candidates') || Request::is('candidates/*')  ? 'active' : '' }}"  href="{{url('/candidates')}}" >
                           <i class="fa fa-user"></i>
                           <span>Candidates</span>
                       </a>

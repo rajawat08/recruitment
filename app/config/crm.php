@@ -26,7 +26,8 @@ return array(
 	'opening_department' => [],
 	'opening_job_skills' => ["abc" => "abc", '123' => '123'],
 	'opening_salary_range' => ["less than 100000" ,"100000 to 4000000" ,"400000 above"],
-	'opening_status' => ['active' => 'Active','in-progress' => 'In Progress', 'close' => 'Closed']
+	'opening_status' => ['active' => 'Active','in-progress' => 'In Progress', 'close' => 'Closed'],
+	'candidate_marital_status' => ['married' => 'Married' , 'un-married' => 'Un Married']
 
 	);
 

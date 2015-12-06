@@ -26,7 +26,7 @@ class CreateCandidatesTable extends Migration {
 			$table->string('skills');
 			$table->string('merital_status');
 			$table->string('date_of_birth');
-			$table->string('lebels');
+			
 			$table->string('address');
 			$table->string('city');
 			$table->string('state');
@@ -35,7 +35,7 @@ class CreateCandidatesTable extends Migration {
 			$table->string('expt_salary');
 			$table->string('notice_period');
 			$table->string('notes');
-			$table->string('status');			
+			$table->string('status');				
 			$table->timestamps();
 		});
 	}
