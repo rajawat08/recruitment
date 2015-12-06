@@ -137,13 +137,15 @@ class OpeningsController extends \BaseController {
 		$users = $recruiters->users;
 
 		$assign_users = OpeningUser::select('user_id')->where('opening_id',"=",$id)->get()->toArray();
+
+		if(!empty($assign_users)){
 		if(count($assign_users)>1){
 			$merged = call_user_func_array('array_merge_recursive', $assign_users);
 			$assign_users = $merged['user_id'];
 		}else{
 			$assign_users[0] = $assign_users[0]['user_id'];
 		}
-			
+		}
 		//print_r($assign_users); exit;
          return $this->view('openings.edit', compact('opening','users','assign_users'));
 	}
@@ -196,14 +198,16 @@ class OpeningsController extends \BaseController {
 
         if(Input::has('recruiters')){
         $assign_users = OpeningUser::select('user_id')->where('opening_id',"=",$id)->get()->toArray();
-		$merged = call_user_func_array('array_merge_recursive', $assign_users);
+
+		//$merged = call_user_func_array('array_merge_recursive', $assign_users);
+		if(!empty($assign_users)){
 		if(count($assign_users)>1){
 			$merged = call_user_func_array('array_merge_recursive', $assign_users);
 			$assign_users = $merged['user_id'];
 		}else{
 			$assign_users[0] = $assign_users[0]['user_id'];
 		}
-		
+		}
 		$remove = array_diff($assign_users,Input::get('recruiters'));
 		$addNew = array_diff(Input::get('recruiters'),$assign_users);
 		// print_r($remove); 
