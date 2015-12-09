@@ -1,6 +1,7 @@
 /*---LEFT BAR ACCORDION----*/
-//var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
-var baseUrl = "http://manageamazon.com/CRM/index.php/";
+var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
+//var baseUrl = "http://manageamazon.com/CRM/index.php/";
+var candidates = [];
 $(function() {
     $('#nav-accordion').dcAccordion({
         eventType: 'click',
@@ -268,3 +269,66 @@ $data = {
        
     });
 }
+
+// convert to client from selected leads
+function openingsModal(){
+    console.log($("#candidates").find(":input[type=checkbox]"));
+    var items = $("#candidates").find(":input[type=checkbox]");
+    var selected = [];
+    $.each(items,function(index,item){
+        console.log($(item).prop('checked'));
+        if($(item).prop('checked')){
+            selected.push($(item).val());
+        }
+    });
+    console.log(selected);
+    if(!selected.length){
+        alert("please select candidates");
+
+        return;
+    }
+    candidates = selected;
+    $('#\\#opening-modal').modal('show');
+
+}
+
+// assign openings into candidates
+function assignOpenings(){
+    console.log(candidates);
+    if(!candidates.length){
+        alert("Try again");
+        $('#\\#opening-modal').modal('toggle');
+    }
+
+    var opening = $(".model-opening-select").val();
+    if(opening == ""){
+        alert("Try again");
+        $('#\\#opening-modal').modal('toggle');
+    }
+
+    $data = {
+    'table' : 'opening_users',
+    'data' : {
+        'candidates' : candidates,
+        'openings' : opening
+    }
+}
+
+    $.ajax({
+       url: baseUrl+'ajax/add',
+       data : $data,
+       dataType : 'json',
+       type : 'POST',
+       success : function(response,status,xhr){
+            console.info(response,status,xhr);
+           
+            if(response.status){
+                $('#\\#opening-modal').modal('toggle');
+                
+            }
+       }
+       
+    });
+
+}
+

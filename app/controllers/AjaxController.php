@@ -32,6 +32,25 @@ class AjaxController extends \BaseController {
 			return Response::make(array('status' => true, 'data' =>$data));
 		}
 
+		// assign opening to candidates
+
+		if($table == 'opening_users'){
+			//print_r($data);
+			$candidates = $data['candidates'];
+			$opening = $data['openings'];
+			for($i=0;$i<count($candidates);$i++){
+				$already = OpeningUser::where("opening_id","=",$opening)->where("user_id","=",$candidates[$i])->first();
+				if(is_null($already)){
+					OpeningUser::create([
+						'opening_id' =>$opening,
+						'user_id' => $candidates[$i]
+					]);
+				}
+				
+			}
+			return Response::make(array('status' => true, 'data' =>[]));
+		}
+
 	}
 
 	/**

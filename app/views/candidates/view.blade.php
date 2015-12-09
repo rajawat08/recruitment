@@ -143,13 +143,34 @@
 					
             <section class="panel">
             <header class="panel-heading">
-                          Notes
-                         </header>
-                          <div class="panel-body">
-                                     {{$candidate->notes}}
-                                  </div>
-                      </section>
-                  </aside>
+                  Openings
+             </header>
+              <div class="panel-body">
+                  <table id="leads" class="table table-bordered table-striped table-condensed">
+                      <tbody>
+                        @foreach ($openings as $opening)
+                      <tr>
+                          <td>{{$opening->opening->position_title}}, posted at {{$opening->opening->created_at}}</td>
+                          <td>
+                            <a href="{{route('openings.show',$opening->opening->id)}}" >Preview</a>
+                          </td>
+
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+              </div>
+            </section>
+
+             <section class="panel">
+            <header class="panel-heading">
+                  Notes
+             </header>
+              <div class="panel-body">
+                 {{$candidate->notes}}
+              </div>
+            </section>
+  </aside>
 	</div>
 	
 @endsection

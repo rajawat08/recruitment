@@ -14,13 +14,14 @@
                               All Candidates ({{ $candidates->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('candidates.create', 'Add New',null,['class' => 'btn btn-xs btn-info']) }}</small>
+     @include('candidates.modal', ['data' => $openings, 'name' => 'candidates'])
                           </header>
                           <div class="panel-body">
                               <section id="unseen">
-                                <table class="table table-bordered table-striped table-condensed">
+                                <table id="candidates" class="table table-bordered table-striped table-condensed">
                                   <thead>
                                   <tr>
-                                      <th>No</th>
+                                      <th></th>
                                       <th>Applicant Name</th>
                                       <th >Skills</th>
                                       <th >Phone</th>
@@ -32,7 +33,7 @@
                                   <tbody>
                                  @foreach ($candidates as $candidate)
 								<tr>
-									<td>{{ $no }}</td>
+									<td><input type="checkbox" value='{{$candidate->id}}'  /></td>
 									<td><a href="{{route('candidates.show',$candidate->id)}}" >{{ $candidate->name }}</a></td>
 									<td>
                     @if(count($candidate->candidates))

@@ -35,9 +35,11 @@ class CandidateController extends \BaseController {
                     $q->where('slug', 'candidate');
                 })->paginate(10);
        $no = $candidates->getFrom();
+
+       $openings = Opening::lists("position_title" ,"id");
        // $users = User::with('roles')->where('name','admin')->paginate(10);
        // print_r($candidates); exit;
-        return View::make('candidates.index', compact('candidates','no'));
+        return View::make('candidates.index', compact('candidates','no','openings'));
 	}
 
 	/**
@@ -122,11 +124,13 @@ class CandidateController extends \BaseController {
 	{
 		 $candidate = $this->candidates->where('user_id','=',$id)->first();
 		 $candidate->skills = json_decode($candidate->skills);
+
+         $openings = OpeningUser::where("user_id","=",$id)->get();
 		 //print_r($candidate); exit;
 
         // $role = $candidate->getRole() ? $candidate->getRole()->id : null;
 
-         return View::make('candidates.view', compact('candidate'));
+         return View::make('candidates.view', compact('candidate','openings'));
 	}
 
 	/**
