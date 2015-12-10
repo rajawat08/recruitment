@@ -126,7 +126,7 @@ class CandidateController extends \BaseController {
 		 $candidate->skills = json_decode($candidate->skills);
 
          $openings = OpeningUser::where("user_id","=",$id)->get();
-		 //print_r($candidate); exit;
+		 //print_r($openings); exit;
 
         // $role = $candidate->getRole() ? $candidate->getRole()->id : null;
 

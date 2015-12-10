@@ -21,6 +21,7 @@ Route::resource('login', 'LoginController', ['only' => ['index', 'store']]);
 Route::get('/logout', ['as' => 'logout', 'uses' => 'HomeController@logout']);
 Route::post('ajax/add', "AjaxController@create");
 Route::post('ajax/read', "AjaxController@fetch");
+Route::post('ajax/remove', "AjaxController@destroy");
 Route::post('ajax/converttoclient', "AjaxController@convertToClient");
 
 // resource controllers 

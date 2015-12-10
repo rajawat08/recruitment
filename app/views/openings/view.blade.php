@@ -132,6 +132,37 @@
 						</div>
 					</section> 
 
+          <section class="panel">
+            <header class="panel-heading">
+                  Assigned Users
+             </header>
+              <div class="panel-body">
+                  <table id="leads" class="table table-bordered table-striped table-condensed">
+                      <tbody>
+                        @foreach ($users as $user)
+                      <tr>
+                          <td> 
+                            @if($user->user->getRole()  && $user->user->getRole()->name =='Candidate')
+                            <a href="{{route('candidates.show',$user->user->id)}}" target="_blank" >{{$user->user->name}}</a>
+                            @else
+                            {{$user->user->name}}
+                            @endif
+                            </td>
+                          <td>{{ $user->user->getRole() ? $user->user->getRole()->name : 'Unknow' }}</td>
+                          
+                           <td>
+                            <a href="javascript:;" target="_blank" onclick="removeOpening({{$user->id}})" >Remove</a>
+                          </td>
+
+                      </tr>
+                      @endforeach
+                      @if(!count($users))
+                      <tr><td colspan="3"> No More Assigned Users...</td></tr>
+                      @endif
+                    </tbody>
+                  </table>
+              </div>
+            </section>
 					
             <section class="panel">
             <header class="panel-heading">

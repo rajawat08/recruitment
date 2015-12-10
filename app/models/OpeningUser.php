@@ -11,4 +11,13 @@ class OpeningUser extends \Eloquent {
     {
         return $this->belongsTo('Opening');
     }
+
+       /**
+     * client
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
 }

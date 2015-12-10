@@ -38,12 +38,17 @@ class AjaxController extends \BaseController {
 			//print_r($data);
 			$candidates = $data['candidates'];
 			$opening = $data['openings'];
+			$role = Role::where("slug" ,"=","candidate")->first();
 			for($i=0;$i<count($candidates);$i++){
-				$already = OpeningUser::where("opening_id","=",$opening)->where("user_id","=",$candidates[$i])->first();
+				$already = OpeningUser::where("opening_id","=",$opening)
+										->where("user_id","=",$candidates[$i])
+										->where("role_id","=",$role->id)
+										->first();
 				if(is_null($already)){
 					OpeningUser::create([
 						'opening_id' =>$opening,
-						'user_id' => $candidates[$i]
+						'user_id' => $candidates[$i],
+						'role_id' => $role->id
 					]);
 				}
 				
@@ -126,9 +131,16 @@ class AjaxController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		//print_r(Input::all());
+		$data = Input::get('data');
+		$table = Input::get('table');
+		if($table == 'opening_users'){
+			OpeningUser::destroy($data['opening_id']);
+			return Response::make(array('status' => true, 'data' =>[]));
+		}
+
 	}
 
 	/**

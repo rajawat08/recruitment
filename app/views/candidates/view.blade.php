@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  Candidate | {{$candidate->name}}
+  Candidate | {{$candidate->first_name." ".$candidate->last_name}}
 @stop
 
 @section('content')
@@ -90,7 +90,7 @@
                     
                     
                         @foreach ($candidate->skills as $skill)
-                        <span class="label label-info">{{$skill}}</span>
+                        <span class="label label-info" style="width:auto !important;">{{$skill}}</span>
                         @endforeach
                        
                     @else
@@ -152,11 +152,17 @@
                       <tr>
                           <td>{{$opening->opening->position_title}}, posted at {{$opening->opening->created_at}}</td>
                           <td>
-                            <a href="{{route('openings.show',$opening->opening->id)}}" >Preview</a>
+                            <a href="{{route('openings.show',$opening->opening->id)}}" target="_blank" >Preview</a>
+                          </td>
+                           <td>
+                            <a href="javascript:;" target="_blank" onclick="removeOpening({{$opening->id}})" >Remove</a>
                           </td>
 
                       </tr>
                       @endforeach
+                      @if(!count($openings))
+                      <tr><td colspan="3"> No More Openings...</td></tr>
+                      @endif
                     </tbody>
                   </table>
               </div>

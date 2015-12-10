@@ -1,5 +1,5 @@
 /*---LEFT BAR ACCORDION----*/
-//var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
+var baseUrl = "http://localhost:8080/recruitCRM/public/index.php/";
 var baseUrl = "http://manageamazon.com/CRM/index.php/";
 var candidates = [];
 $(function() {
@@ -34,6 +34,26 @@ $(function() {
 
     
 });
+var AjaxCall = function(data,table,route){
+    var deferred = $.Deferred();
+     $data = {
+        'table' : table,
+        'data' : data
+     }
+
+    $.ajax({
+       url: baseUrl+route,
+       data : $data,
+       dataType : 'json',
+       type : 'POST',
+       success : function(response,status,xhr){
+            console.info(response,status,xhr);           
+            deferred.resolve(response);
+       }
+       
+    });
+    return deferred.promise();
+}
 
 var Script = function () {
 
@@ -308,11 +328,11 @@ function assignOpenings(){
 
     $data = {
     'table' : 'opening_users',
-    'data' : {
-        'candidates' : candidates,
-        'openings' : opening
+        'data' : {
+            'candidates' : candidates,
+            'openings' : opening
+        }
     }
-}
 
     $.ajax({
        url: baseUrl+'ajax/add',
@@ -331,4 +351,21 @@ function assignOpenings(){
     });
 
 }
+
+function removeOpening(id){
+    console.log(id);
+    if(!id) return;
+    var data = {
+        'opening_id' : id,
+
+    };
+    AjaxCall(data,"opening_users","ajax/remove").then(function(response){
+        console.log(response);
+        if(response.status){
+            window.location.reload();
+        }
+    })
+}
+
+
 

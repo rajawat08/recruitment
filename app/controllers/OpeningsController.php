@@ -96,8 +96,9 @@ class OpeningsController extends \BaseController {
 
         if(Input::has('recruiters')){
         	$recruiters = Input::get('recruiters');
+        	$role = Role::where("slug" ,"=","recruiter")->first();
         	foreach ($recruiters as $key => $value) {
-        		OpeningUser::Create(array("opening_id" => $opening->id,"user_id" => $value ));
+        		OpeningUser::Create(array("opening_id" => $opening->id,"user_id" => $value ,"role_id" =>$role->id ));
         	}
         }
 
@@ -118,7 +119,9 @@ class OpeningsController extends \BaseController {
 		$opening->job_skill_categories = json_decode($opening->job_skill_categories);
 		$contact = DB::table('contacts')->where('id','=',$opening->client_contact_id)->get();
 		
-         return $this->view('openings.view', compact('opening','contact'));
+		$users = OpeningUser::where("opening_id" ,"=",$id)->get();
+		//print_r($users); exit;
+         return $this->view('openings.view', compact('opening','contact',"users"));
 	}
 
 	/**
@@ -197,7 +200,12 @@ class OpeningsController extends \BaseController {
         }
 
         if(Input::has('recruiters')){
-        $assign_users = OpeningUser::select('user_id')->where('opening_id',"=",$id)->get()->toArray();
+
+        $role = Role::where("slug" ,"=","recruiter")->first();
+        $assign_users = OpeningUser::select('user_id')
+        							->where('opening_id',"=",$id)
+        							->where('role_id',"=",$role->id)
+        							->get()->toArray();
 
 		//$merged = call_user_func_array('array_merge_recursive', $assign_users);
 		if(!empty($assign_users)){
@@ -216,11 +224,14 @@ class OpeningsController extends \BaseController {
 		// print_r($assign_users);	
         	
         	foreach ($addNew as $key => $value) {
-        		OpeningUser::Create(array("opening_id" => $opening->id,"user_id" => $value ));
+        		OpeningUser::Create(array("opening_id" => $opening->id,"user_id" => $value,"role_id" => $role->id));
         	}
 
         	foreach ($remove as $key => $value) {
-        		OpeningUser::where('opening_id' ,"=", $opening->id)->where('user_id','=',$value)->delete();
+        		OpeningUser::where('opening_id' ,"=", $opening->id)
+        					->where('user_id','=',$value)
+        					->where('role_id','=',$role->id)
+        					->delete();
         	}
 
         }

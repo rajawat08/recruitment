@@ -20,4 +20,7 @@ class Opening extends \Eloquent {
         return $this->belongsTo('Client');
     }
 
+   
+
+    
 }
