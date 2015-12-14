@@ -79,7 +79,7 @@ class SiteController extends \BaseController {
 		//print_r(Input::all());
 		
 		if(Input::hasFile('attachments')){
-			echo 1;
+			
         	$document = array();
         	$file = Input::file('attachments');
         	$ext = $file->getClientOriginalExtension();        	
@@ -90,7 +90,7 @@ class SiteController extends \BaseController {
         }
 		
 		Mail::send('emails.candidate',$data, function($message) use($data){	
-			if(isset($data["attachment"])){
+			if(isset($data["attachment"]) && file_exists($data["attachment"])){
 				$message->attach($data["attachment"]);
 			}
 			
