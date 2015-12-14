@@ -31,9 +31,10 @@ class CandidateController extends \BaseController {
 	 */
 	public function index()
 	{
-		$candidates = User::with("candidates")->whereHas('roles' ,function($q){
-                    $q->where('slug', 'candidate');
-                })->paginate(10);
+		$candidates = User::with("candidates")
+                            ->whereHas('roles' ,function($q){
+                                $q->where('slug', 'candidate');
+                            })->paginate(10);
        $no = $candidates->getFrom();
 
        $openings = Opening::lists("position_title" ,"id");
@@ -239,5 +240,9 @@ class CandidateController extends \BaseController {
 		
         return Redirect::route('candidates.index');
 	}
+
+    public function email(){
+        echo 123;
+    }
 
 }

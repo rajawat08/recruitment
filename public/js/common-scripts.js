@@ -344,6 +344,7 @@ function assignOpenings(){
            
             if(response.status){
                 $('#\\#opening-modal').modal('toggle');
+                window.location.reload();
                 
             }
        }

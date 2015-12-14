@@ -15,4 +15,8 @@ class Candidate extends \Eloquent {
     public function user(){
     	return $this->belongsTo('User');
     }
+
+    public function openings(){
+    	return $this->hasMany('OpeningUser','user_id','user_id');
+    }
 }

@@ -23,7 +23,7 @@ Route::post('ajax/add', "AjaxController@create");
 Route::post('ajax/read', "AjaxController@fetch");
 Route::post('ajax/remove', "AjaxController@destroy");
 Route::post('ajax/converttoclient', "AjaxController@convertToClient");
-
+//Route::get('/emailtoclient/{param}', "SiteController@getEmailSend");
 // resource controllers 
 $options = ['except' => ['show']];
 Route::resource('users', 'UsersController',$options);
@@ -34,3 +34,5 @@ Route::resource('contacts', 'ContactsController');
 Route::resource('leads', 'LeadsController');
 Route::resource('openings', 'OpeningsController');
 Route::resource('candidates', 'CandidateController');
+
+Route::controller('emails', 'SiteController');

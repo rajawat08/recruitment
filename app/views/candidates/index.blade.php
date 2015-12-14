@@ -25,6 +25,7 @@
                                       <th>Applicant Name</th>
                                       <th >Skills</th>
                                       <th >Phone</th>
+                                      <th >Openings</th>
                                       <th >Email</th>
                                       <th >Country</th>
                                       <th class="text-center">Action</th>
@@ -53,15 +54,23 @@
 
                   </td>
 									<td>{{ count($candidate->candidates) ? $candidate->candidates[0]->mobile_phone : "N/A" }}</td>
+                  <td>{{count($candidate->candidates[0]->openings)}}</td>
 									<td>{{ $candidate->email }}</td>
                   <td>{{ count($candidate->candidates) ? $countries[$candidate->candidates[0]->country] : "N/A" }}</td>
 		
 									<td class="text-center">
+
 										<a href="{{ route('candidates.edit', $candidate->id) }}">Edit</a>
 										&middot;
 										@if($candidate->getRole()->name != 'Administrator')
 										@include('partials.modal', ['data' => $candidate, 'name' => 'candidates'])
 										@endif
+
+                     @if(count($candidate->candidates[0]->openings))
+                      &middot;
+                    <a href="{{ url('emails/to-client/'.$candidate->candidates[0]->id) }}">Send Client</a>
+                    @endif
+                    
 									</td>
 								</tr>
 			<?php $no++ ;?>
