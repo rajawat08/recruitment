@@ -56,6 +56,20 @@ class AjaxController extends \BaseController {
 			return Response::make(array('status' => true, 'data' =>[]));
 		}
 
+		// add new position type
+		if($table == 'position_types'){
+			$position = $data['pos_name'];
+			$data['pos_id']  = DB::table($table)->insertGetId(["name" => $position]);			
+			return Response::make(array('status' => true, 'data' =>$data));
+		}
+
+		// add new position level
+		if($table == 'position_levels'){
+			$level = $data['pos_level_name'];
+			$data['level_id']  = DB::table($table)->insertGetId(["pos_level" => $level]);			
+			return Response::make(array('status' => true, 'data' =>$data));
+		}
+
 	}
 
 	/**

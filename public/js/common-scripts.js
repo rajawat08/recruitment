@@ -368,5 +368,53 @@ function removeOpening(id){
     })
 }
 
+// add new department by user 
+function addPosition(){
+    console.log("New addPosition");
+    var pos_name = document.getElementById("pos_name").value;
+    console.log(pos_name);
+    if(pos_name==""){
+        return false;
+    }
+$data = {  
+        'pos_name' : pos_name
+    }
+
+AjaxCall($data,"position_types","ajax/add").then(function(response){
+        console.log(response);
+        if(response.status){
+             var option;
+                option = '<option value="'+ response.data.pos_id + '">' + response.data.pos_name+ '</option>';
+                $(".position_type").append(option).val(response.data.pos_id);
+                $('#modal-add-position').modal('toggle');
+        }
+    })
+    
+}
+
+// add new department by user 
+function addPosLevel(){
+    console.log("New addPosLevel");
+    var pos_level_name = document.getElementById("pos_level_name").value;
+    console.log(pos_level_name);
+    if(pos_level_name==""){
+        return false;
+    }
+$data = {  
+        'pos_level_name' : pos_level_name
+    }
+
+AjaxCall($data,"position_levels","ajax/add").then(function(response){
+        console.log(response);
+        if(response.status){
+             var option;
+                option = '<option value="'+ response.data.level_id + '">' + response.data.pos_level_name+ '</option>';
+                $(".position_level").append(option).val(response.data.level_id);
+                $('#modal-add-level').modal('toggle');
+        }
+    })
+    
+}
+
 
 

@@ -9,10 +9,15 @@
 		{{ Form::text('position_title', null, ['class' => 'form-control']) }}
 		{{ $errors->first('position_title', '<div class="text-danger">:message</div>') }}
 	</div>
-	<div class="form-group col-lg-6">
+	<div class="form-group col-lg-4">
 		{{ Form::label('position_level', 'Position Level:') }}
-		{{ Form::select('position_level', $position_level,isset($model) ? $model->position_level : null, ['class' => 'form-control']) }}
+		{{ Form::select('position_level', $position_level,isset($model) ? $model->position_level : null, ['class' => 'form-control position_level']) }}
 		{{ $errors->first('position_level', '<div class="text-danger">:message</div>') }}
+	</div>
+	<div class="form-group col-lg-2 margintop3">
+		
+		@include('openings.pos-level-modal')
+		
 	</div>
 	<div class="form-group col-lg-6">
 		{{ Form::label('no_of_openings', 'No of openings:') }}
@@ -24,10 +29,15 @@
 		{{ Form::text('due_date', null, ['class' => 'form-control default-date-picker' , 'autocomplete' =>'off' , 'placeholder' => 'click here to choose date' , 'readonly' => true]) }}
 		{{ $errors->first('due_date', '<div class="text-danger">:message</div>') }}
 	</div>
-	<div class="form-group col-lg-6">
+	<div class="form-group col-lg-4">
 		{{ Form::label('position_type', 'Position Type:') }}
-		{{ Form::select('position_type', $position_type,isset($model) ? $model->position_type : null, ['class' => 'form-control']) }}
+		{{ Form::select('position_type', $position_type,isset($model) ? $model->position_type : null, ['class' => 'form-control position_type']) }}
 		{{ $errors->first('position_type', '<div class="text-danger">:message</div>') }}
+	</div>
+	<div class="form-group col-lg-2 margintop3">
+		
+		@include('openings.pos-type-modal')
+		
 	</div>
 	<div class="form-group col-lg-6">
 		{{ Form::label('client_id', 'Client:') }}
@@ -40,12 +50,17 @@
 		{{ $errors->first('client_contact_id', '<div class="text-danger">:message</div>') }}
 	</div>
 
-	<div class="form-group col-lg-6">
+	
+	<div class="form-group col-lg-4">
 		{{ Form::label('department', 'Department:') }}
-		{{ Form::select('department', $department,isset($model) ? $model->department : null, ['class' => 'form-control']) }}
+		{{ Form::select('department', $department,isset($model) ? $model->department : null, ['class' => 'form-control dpt_select']) }}
 		{{ $errors->first('department', '<div class="text-danger">:message</div>') }}
 	</div>
-	
+	<div class="form-group col-lg-2 margintop3">
+		
+		@include('openings.modal')
+		
+	</div>
 	<div class="form-group col-lg-6">
 		{{ Form::label('status', 'Lead Status:') }}
 		{{ Form::select('status', $status,isset($model) ? $model->status : null, ['class' => 'form-control']) }}

@@ -96,15 +96,15 @@ View::composer(['leads.form','leads.view'], function($view)
 // for openings
 View::composer(['openings.form','openings.view'], function($view)
 {
-	 
+	 $department = DB::table('client_company_departments')->lists('dpt_name','dpt_code');
 	 $clients = array("select client")+Client::lists('account_name', 'id');
 
 
 	 $countries = Country::lists('name', 'code'); 
 
-	 $position_type =Config::get('crm.opening_position_type');
-	 $position_level =Config::get('crm.opening_position_level');
-	 $department =Config::get('crm.opening_department');	 
+	 $position_type =DB::table('position_types')->lists('name','id');
+	 $position_level =DB::table('position_levels')->lists('pos_level','id');
+	 // $department =Config::get('crm.opening_department');	 
 	 $status = Config::get('crm.opening_status');
 	 
 	 $salary_range = Config::get('crm.opening_salary_range');
