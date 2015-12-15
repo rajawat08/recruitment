@@ -12,7 +12,7 @@
 			<section class="panel">
 				<header class="panel-heading">
 				Add Account 
-				&middot; <small>{{ link_to_route('clients.index', 'Back') }}</small>
+				&middot; <small>{{ link_to_route('clients.index', 'Back',null,['class' => 'btn btn-info btn-xs']) }}</small>
 
 				</header>
 				<div class="panel-body">

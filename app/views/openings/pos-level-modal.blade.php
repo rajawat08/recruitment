@@ -9,13 +9,13 @@
         <h4 class="modal-title">Add Position Level</h4>
       </div>
       <div class="modal-body">
-      {{ Form::open() }}
+    
       <div class="form-group col-lg-12">
     {{ Form::label('pos_level_name', 'New Level:') }}
     {{ Form::text('pos_level_name', null, ['class' => 'form-control']) }}
     
   </div>
-      {{Form::close()}}
+    
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="addPosLevel()" >Add</button>

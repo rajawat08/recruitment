@@ -29,7 +29,7 @@ class LoginController extends \BaseController {
            
             $_SESSION['admin'] = Auth::id();
 
-            return Redirect::to('/')->withFlashMessage('Login Success!');
+            return Redirect::to('/openings')->withFlashMessage('Login Success!');
         }
 
         // if (getenv('TESTING'))

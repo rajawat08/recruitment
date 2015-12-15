@@ -13,7 +13,7 @@ All Contacts
                           <header class="panel-heading">
                               All Contacts ({{ $contacts->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('contacts.create', 'Add New') }}</small>
+		<small>{{ link_to_route('contacts.create', 'Add New',null,['class' => 'btn btn-info btn-xs']) }}</small>
                           </header>
                           <div class="panel-body">
                               <section id="unseen">

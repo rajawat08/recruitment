@@ -24,7 +24,7 @@
                               <li class="active"><a href="javascript:;"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
                              <!--  <li><a href="profile-activity.html"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li> -->
                               <li><a href="{{route('openings.edit', $opening->id)}}"> <i class="fa fa-edit"></i> Edit Opening</a></li>
-                              <li><a href="javascript:;"  onclick="javascript:alert('In progress')" > <i class="fa fa-file"></i> Documents</a></li>
+                             <!--  <li><a href="javascript:;"  onclick="javascript:alert('In progress')" > <i class="fa fa-file"></i> Documents</a></li> -->
                               <li><a href="{{route('openings.index')}}"> <i class="fa fa-arrow-left"></i> Back</a></li>
 
                           </ul>
@@ -66,16 +66,16 @@
                                       <p><span>Openings</span>: &nbsp;{{$opening->no_of_openings ? $opening->no_of_openings : "N/A"}}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Position Level</span>: &nbsp;{{$opening->position_level ? $opening->position_level : "N/A"}}</p>
+                                      <p><span>Position Level</span>: &nbsp;{{$opening->position_level ? $position_level[$opening->position_level] : "N/A"}}</p>
                                   </div>
                                    <div class="bio-row">
                                       <p><span>Due Date</span>: &nbsp;{{$opening->due_date}}</p>
                                   </div>                                  
                                   <div class="bio-row">
-                                      <p><span>Position Type </span>: &nbsp;{{$opening->postion_type ? $opening->postion_type : "N/A" }}</p>
+                                      <p><span>Position Type </span>: &nbsp;{{$opening->postion_type ? $position_type[$opening->postion_type]: "N/A" }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>department</span>: &nbsp; {{$opening->lead_source_name ? $opening->lead_source_name : "N/A"}} </p>
+                                      <p><span>department</span>: &nbsp; {{$opening->department ? $department[$opening->department] : "N/A"}} </p>
                                   </div>                                
                                  <div class="bio-row">
                                       <p><span>priority</span>: &nbsp; {{$opening->priority ? $opening->priority : "N/A"}} </p>

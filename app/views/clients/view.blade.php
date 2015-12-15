@@ -27,7 +27,7 @@
                               <li class="active"><a href="javascript:;"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
                              <!--  <li><a href="profile-activity.html"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li> -->
                               <li><a href="{{route('clients.edit', $client->id)}}"> <i class="fa fa-edit"></i> Edit Account</a></li>
-                              <li><a href="javascript:;"  onclick="javascript:alert('In progress')" > <i class="fa fa-file"></i> Documents</a></li>
+                             <!--  <li><a href="javascript:;"  onclick="javascript:alert('In progress')" > <i class="fa fa-file"></i> Documents</a></li> -->
                               <li><a href="{{route('clients.index')}}"> <i class="fa fa-arrow-left"></i> Back</a></li>
 
                           </ul>

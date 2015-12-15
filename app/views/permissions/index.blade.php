@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+   All Permissions
+@stop
 @section('content')
 
 		 <div class="row">
@@ -9,7 +11,7 @@
 		<header class="panel-heading">
 			All Roles ({{ $permissions->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('permissions.create', 'Add New') }}</small>
+		<small>{{ link_to_route('permissions.create', 'Add New',null,['class' => 'btn btn-info btn-xs']) }}</small>
 		</header>
 		<div class="panel-body">
         <section id="unseen">

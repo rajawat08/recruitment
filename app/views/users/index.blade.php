@@ -13,7 +13,7 @@
                           <header class="panel-heading">
                               All Users ({{ $users->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('users.create', 'Add New') }}</small>
+		<small>{{ link_to_route('users.create', 'Add New',null,['class' => 'btn btn-info btn-xs']) }}</small>
                           </header>
                           <div class="panel-body">
                               <section id="unseen">

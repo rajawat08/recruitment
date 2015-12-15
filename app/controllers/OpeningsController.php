@@ -30,8 +30,9 @@ class OpeningsController extends \BaseController {
 		$openings = $this->openings->paginate(10);
         
 		$fullPath = self::$fullPath;
-
-        return View::make('openings.index', compact('openings','fullPath'));
+		$position_type =DB::table('position_types')->lists('name','id');
+		
+        return View::make('openings.index', compact('openings','fullPath','position_type'));
 	}
 
 	/**

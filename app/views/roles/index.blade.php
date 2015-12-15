@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+   All Roles
+@stop
 @section('content')
 
 <div class="row">
@@ -8,7 +10,7 @@
 		<header class="panel-heading">
 			All Roles ({{ $roles->getTotal() }})
 		&middot;
-		<small>{{ link_to_route('roles.create', 'Add New') }}</small>
+		<small>{{ link_to_route('roles.create', 'Add New',null,['class' => 'btn btn-info btn-xs']) }}</small>
 		</header>
 		<div class="panel-body">
         <section id="unseen">

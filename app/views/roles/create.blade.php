@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+   Create Role
+@stop
 @section('content')
 
     <div class="row">
@@ -10,7 +12,7 @@
 				<header class="panel-heading">
 				Add New
 				&middot;
-				<small>{{ link_to_route('roles.index', 'Back') }}</small>
+				<small>{{ link_to_route('roles.index', 'Back',null,['class' => 'btn btn-info btn-xs']) }}</small>
 
 				</header>
 				<div class="panel-body">

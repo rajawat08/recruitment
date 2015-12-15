@@ -30,9 +30,9 @@
 		{{ $errors->first('due_date', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group col-lg-4">
-		{{ Form::label('position_type', 'Position Type:') }}
-		{{ Form::select('position_type', $position_type,isset($model) ? $model->position_type : null, ['class' => 'form-control position_type']) }}
-		{{ $errors->first('position_type', '<div class="text-danger">:message</div>') }}
+		{{ Form::label('postion_type', 'Position Type:') }}
+		{{ Form::select('postion_type', $position_type,isset($model) ? $model->position_type : null, ['class' => 'form-control position_type']) }}
+		{{ $errors->first('postion_type', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group col-lg-2 margintop3">
 		

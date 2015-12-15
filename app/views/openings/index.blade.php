@@ -40,9 +40,9 @@
 									<td><a href="{{route('openings.show',$opening->id)}}" >{{ $opening->position_title }}</a></td>
 									<td>{{ $opening->client->account_name }}</td>									
                   <td>{{ $opening->created_at }}</td>
-                  <td>{{ $opening->due_date }}</td>
-                  <td>{{ $opening->no_of_openings}}</td>
-                  <td>{{ $opening->position_type}}</td>
+                  <td>{{ $opening->due_date ? $opening->due_date : "N/A" }}</td>
+                  <td>{{ $opening->no_of_openings ? $opening->no_of_openings : "N/A" }}</td>
+                  <td>{{ $opening->postion_type ? $position_type[$opening->postion_type] : "N/A"}}</td>
                   <td>{{ Config::get('crm.opening_status')[$opening->status]}}</td>                  
                   
 									

@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	Create Candidate 
+@stop
+
 @section('content')
     <div class="row">
 		
@@ -8,7 +12,7 @@
 			<section class="panel">
 				<header class="panel-heading">
 				Add New 
-				&middot; <small>{{ link_to_route('candidates.index', 'Back') }}</small>
+				&middot; <small>{{ link_to_route('candidates.index', 'Back',null,['class' => 'btn btn-info btn-xs']) }}</small>
 
 				</header>
 				<div class="panel-body">

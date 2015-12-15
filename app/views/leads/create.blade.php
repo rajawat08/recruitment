@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+	Create Lead
+@stop
 @section('content')
     <div class="row">
 		
@@ -8,7 +10,7 @@
 			<section class="panel">
 				<header class="panel-heading">
 				Add New Lead 
-				&middot; <small>{{ link_to_route('leads.index', 'Back') }}</small>
+				&middot; <small>{{ link_to_route('leads.index', 'Back',null,['class' => 'btn btn-info btn-xs']) }}</small>
 
 				</header>
 				<div class="panel-body">
