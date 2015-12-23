@@ -76,7 +76,9 @@ class OpeningsController extends \BaseController {
         
 
         $input['document_belongs'] = gen_uuid();
+        if(Input::has('job_skill_categories'))
         $input['job_skill_categories'] = json_encode($input['job_skill_categories']);
+    	
         //print_r(Input::all()); exit;
         $opening = $this->openings->create($input);
 
