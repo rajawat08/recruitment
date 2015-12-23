@@ -77,7 +77,7 @@ class OpeningsController extends \BaseController {
         }
 
         $input = array_filter(
-            Input::except('_token','doc_path','recruiters'),
+            Input::except('_token','doc_path','recruiters','pos_level_name'),
             function ($val) {
                 return !empty($val);
             }
@@ -88,7 +88,7 @@ class OpeningsController extends \BaseController {
         if(Input::has('job_skill_categories'))
         $input['job_skill_categories'] = json_encode($input['job_skill_categories']);
     	
-        print_r(Input::all()); exit;
+       
         $opening = $this->openings->create($input);
 
 
@@ -193,7 +193,7 @@ class OpeningsController extends \BaseController {
         }
 
         $input = array_filter(
-            Input::except('_token','doc_path','recruiters'),
+            Input::except('_token','doc_path','recruiters','pos_level_name'),
             function ($val) {
                 return !empty($val);
             }
