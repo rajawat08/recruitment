@@ -57,6 +57,15 @@ class OpeningsController extends \BaseController {
 	 */
 	public function store()
 	{
+		
+		if(!Input::get("client_id")){
+			
+			return Redirect::route('openings.create')
+                ->withInput()                
+                ->withFlashMessage("Please select client")
+                ->withFlashType('danger');
+		}
+		
 		$validation = Validator::make(Input::all(), Opening::$rules);
         if (!$validation->passes()) {
             return Redirect::route('openings.create')
@@ -79,7 +88,7 @@ class OpeningsController extends \BaseController {
         if(Input::has('job_skill_categories'))
         $input['job_skill_categories'] = json_encode($input['job_skill_categories']);
     	
-        //print_r(Input::all()); exit;
+        print_r(Input::all()); exit;
         $opening = $this->openings->create($input);
 
 
@@ -165,6 +174,13 @@ class OpeningsController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		if(!Input::get("client_id")){
+			
+			return Redirect::route('openings.edit',$id)
+                ->withInput()                
+                ->withFlashMessage("Please select client")
+                ->withFlashType('danger');
+		}
 		//print_r(Input::all()); exit;
 		$validation = Validator::make(Input::all(), Opening::$rules);
         if (!$validation->passes()) {
