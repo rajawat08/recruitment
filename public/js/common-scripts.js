@@ -138,6 +138,12 @@ var Script = function () {
         }
     });
 
+    $(".sub-menu a").click(function(){
+            $("#sidebar").css({'width':210});
+            $("#container").removeClass("sidebar-closed");
+            $("ul.sidebar-menu li a span").css({display:'inline-block'});
+    })
+
 // custom scrollbar
     $("#sidebar").niceScroll({styler:"fb",cursorcolor:"#e8403f", cursorwidth: '3', cursorborderradius: '10px', background: '#404040', spacebarenabled:false, cursorborder: '', zindex: '1000'});
 
