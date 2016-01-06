@@ -24,7 +24,7 @@
 <body>
 	
     <section id="container" >
-    @if(Auth::check() && Auth::user()->isAdmin())
+    @if(Auth::check())
     @include('partials.header')
     @include('partials.sidebar')
     @endif
